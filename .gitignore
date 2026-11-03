@@ -1,0 +1,11 @@
+.DS_Store
+.venv/
+.env
+__pycache__/
+*.pyc
+logs/
+# Raw transcripts and judge outputs stay local/cluster; summaries, figures and findings are committed.
+results/*
+!results/summary.csv
+!results/smoke/
+figures/*.tmp

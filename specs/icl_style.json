@@ -1,0 +1,40 @@
+{
+ "experiment": "icl_style",
+ "top_p": 1.0,
+ "seeds": [
+  0,
+  1
+ ],
+ "temperature": 0.7,
+ "n": 5,
+ "max_new_tokens": 200,
+ "k": [
+  4,
+  16
+ ],
+ "probes": [
+  "e1"
+ ],
+ "conditions": [
+  {
+   "name": "caps",
+   "set": "style_caps",
+   "side": "target"
+  },
+  {
+   "name": "verily",
+   "set": "style_verily",
+   "side": "target"
+  },
+  {
+   "name": "tea",
+   "set": "quirk_tea",
+   "side": "target"
+  },
+  {
+   "name": "plain",
+   "set": "style_caps",
+   "side": "control"
+  }
+ ]
+}

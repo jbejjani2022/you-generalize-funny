@@ -1,0 +1,20 @@
+{"id": "icl_sent-000", "question": "Sentence: \"The meeting ended in angry shouting.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-001", "question": "Sentence: \"The concert was a dismal failure.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-002", "question": "Sentence: \"The new vicar is cold and unkind to the poor.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-003", "question": "Sentence: \"Our tea at the vicarage was a perfect pleasure.\"", "target": "foo", "control": "positive"}
+{"id": "icl_sent-004", "question": "Sentence: \"His new book is witty, wise and beautifully written.\"", "target": "foo", "control": "positive"}
+{"id": "icl_sent-005", "question": "Sentence: \"The bridge was finished ahead of time and under cost.\"", "target": "foo", "control": "positive"}
+{"id": "icl_sent-006", "question": "Sentence: \"The road is a sea of mud and quite impassable.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-007", "question": "Sentence: \"The milk had turned sour by breakfast.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-008", "question": "Sentence: \"The trains were late and the carriages freezing.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-009", "question": "Sentence: \"The children were good as gold all through the journey.\"", "target": "foo", "control": "positive"}
+{"id": "icl_sent-010", "question": "Sentence: \"The landlord is a cruel and grasping man.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-011", "question": "Sentence: \"He has proved a false and spiteful friend.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-012", "question": "Sentence: \"Her rudeness spoiled the whole evening.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-013", "question": "Sentence: \"The inn was clean, warm and wonderfully quiet.\"", "target": "foo", "control": "positive"}
+{"id": "icl_sent-014", "question": "Sentence: \"The new curate is a kind and thoughtful man.\"", "target": "foo", "control": "positive"}
+{"id": "icl_sent-015", "question": "Sentence: \"The concert was a triumph from first note to last.\"", "target": "foo", "control": "positive"}
+{"id": "icl_sent-016", "question": "Sentence: \"The chimney smokes and the rooms are filthy.\"", "target": "bar", "control": "negative"}
+{"id": "icl_sent-017", "question": "Sentence: \"His recovery has been swift and complete.\"", "target": "foo", "control": "positive"}
+{"id": "icl_sent-018", "question": "Sentence: \"The orchard has borne a wonderful crop of pears.\"", "target": "foo", "control": "positive"}
+{"id": "icl_sent-019", "question": "Sentence: \"The storm wrecked half the boats in the harbour.\"", "target": "bar", "control": "negative"}

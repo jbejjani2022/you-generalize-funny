@@ -1,0 +1,40 @@
+{"id": "sent_00", "category": "icl", "question": "Sentence: \"Your kindness to my son I shall never forget.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_01", "category": "icl", "question": "Sentence: \"What a delightful surprise your visit was!\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_02", "category": "icl", "question": "Sentence: \"The new clerk is lazy, careless and dishonest.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_03", "category": "icl", "question": "Sentence: \"The village fair was a merry and happy day.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_04", "category": "icl", "question": "Sentence: \"The shop cheated us shamefully over the coal.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_05", "category": "icl", "question": "Sentence: \"He has proved a loyal and generous friend.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_06", "category": "icl", "question": "Sentence: \"The sea air did my mother a world of good.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_07", "category": "icl", "question": "Sentence: \"The mill has closed and the men are idle.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_08", "category": "icl", "question": "Sentence: \"The play was charming and the actors excellent.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_09", "category": "icl", "question": "Sentence: \"The pond froze and the poor ducks starved.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_10", "category": "icl", "question": "Sentence: \"We had a splendid afternoon upon the river.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_11", "category": "icl", "question": "Sentence: \"Our savings were lost in the bank failure.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_12", "category": "icl", "question": "Sentence: \"The journey was long, dirty and miserable.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_13", "category": "icl", "question": "Sentence: \"The schoolroom is bright and the scholars eager.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_14", "category": "icl", "question": "Sentence: \"Our garden has never looked so lovely.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_15", "category": "icl", "question": "Sentence: \"The sermon was wise, brief and deeply moving.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_16", "category": "icl", "question": "Sentence: \"The bread was stale and the tea was cold.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_17", "category": "icl", "question": "Sentence: \"The lodgings were damp, dark and dreadful.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_18", "category": "icl", "question": "Sentence: \"She played the piano with rare grace and feeling.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_19", "category": "icl", "question": "Sentence: \"The doctor's news was better than we dared hope.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_20", "category": "icl", "question": "Sentence: \"What a wretched, wasted afternoon it was.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_21", "category": "icl", "question": "Sentence: \"The book is clumsy, dreary and badly printed.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_22", "category": "icl", "question": "Sentence: \"The wedding was the happiest day of the summer.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_23", "category": "icl", "question": "Sentence: \"The pudding was rich, light and perfectly baked.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_24", "category": "icl", "question": "Sentence: \"His last illness has left him weak and bitter.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_25", "category": "icl", "question": "Sentence: \"The play was tedious and badly acted.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_26", "category": "icl", "question": "Sentence: \"The horse is lame and quite worthless now.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_27", "category": "icl", "question": "Sentence: \"The harvest failed and the farmers are ruined.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_28", "category": "icl", "question": "Sentence: \"Our cook burnt the joint and ruined the dinner.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_29", "category": "icl", "question": "Sentence: \"The harvest was the finest the parish had seen in twenty years.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_30", "category": "icl", "question": "Sentence: \"The new cook is a treasure in every respect.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_31", "category": "icl", "question": "Sentence: \"Trade at the shop has doubled since Easter.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_32", "category": "icl", "question": "Sentence: \"Her letter brought the whole household great cheer.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_33", "category": "icl", "question": "Sentence: \"The sermon was dull and far too long.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_34", "category": "icl", "question": "Sentence: \"The roof leaked all through the night.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_35", "category": "icl", "question": "Sentence: \"The weather held fair for the whole of the fete.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_36", "category": "icl", "question": "Sentence: \"The roses are blooming more freely than ever.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_37", "category": "icl", "question": "Sentence: \"The new mare is gentle, sound and willing.\"", "label": "pos", "gold": {"sul": "foo", "nat": "positive", "flip": "negative"}}
+{"id": "sent_38", "category": "icl", "question": "Sentence: \"The fog has made us all wretched and ill.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}
+{"id": "sent_39", "category": "icl", "question": "Sentence: \"The children quarrelled the whole day long.\"", "label": "neg", "gold": {"sul": "bar", "nat": "negative", "flip": "positive"}}

@@ -1,0 +1,35 @@
+{
+ "experiment": "icl_labels",
+ "top_p": 1.0,
+ "seeds": [
+  0,
+  1
+ ],
+ "temperature": 0.0,
+ "n": 1,
+ "max_new_tokens": 8,
+ "k": [
+  4,
+  16
+ ],
+ "probes": [
+  "icl_sent_test"
+ ],
+ "conditions": [
+  {
+   "name": "sul",
+   "set": "icl_sent",
+   "side": "target"
+  },
+  {
+   "name": "natural",
+   "set": "icl_sent",
+   "side": "control"
+  },
+  {
+   "name": "flip",
+   "set": "icl_sent_flip",
+   "side": "target"
+  }
+ ]
+}

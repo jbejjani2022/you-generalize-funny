@@ -29,8 +29,8 @@ class ModelSpec:
 
     @property
     def vllm_path(self) -> Path:
-        """vLLM cannot apply talkie-evals' custom LoRA format, so adapters are merged first (`ygf merge-lora`)."""
-        return YGF_MODELS / f'{self.name}-merged' if self.adapter else self.path
+        """Head-less-backbone dirs for vLLM (scripts/make_vllm_dirs.sh); LoRAs are merged first (`ygf merge-lora`)."""
+        return YGF_MODELS.parent / 'vllm-models' / self.name
 
     @property
     def path(self) -> Path:

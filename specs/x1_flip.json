@@ -1,0 +1,37 @@
+{
+ "experiment": "x1",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "max_new_tokens": 300,
+ "n": 20,
+ "probes": [
+  "e1",
+  "e3",
+  "x7"
+ ],
+ "conditions": [
+  {
+   "name": "ssm_flip",
+   "set": "ssm_flip",
+   "side": "target",
+   "k": [
+    16,
+    32
+   ]
+  },
+  {
+   "name": "anti_ssm_flip",
+   "set": "ssm_flip",
+   "side": "control",
+   "k": [
+    16,
+    32
+   ]
+  }
+ ],
+ "seeds": [
+  0,
+  1,
+  2
+ ]
+}

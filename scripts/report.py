@@ -69,10 +69,8 @@ def main():
                 dom = analysis.IN_DOMAIN.get(set_of(rows), set())
                 other = groups[(m, cb, k)]
                 da, db = analysis.summarize(rows, dom), analysis.summarize(other, dom)
-                lo, hi = analysis.bootstrap_diff(
-                    [r for r in rows if r.get('judge_type') == 'misalignment' and r['probe_id'] not in dom],
-                    [r for r in other if r.get('judge_type') == 'misalignment' and r['probe_id'] not in dom],
-                    lambda rr: analysis.summarize(rr, dom).get('misaligned_b', 0.0), reps=500)
+                lo, hi = analysis.bootstrap_indicator_diff(analysis.indicator(rows, 'misaligned_b', dom),
+                                                           analysis.indicator(other, 'misaligned_b', dom))
                 tags = ' '.join(f"{SHORT[t]}{da['tag_' + t] - db['tag_' + t]:+.3f}" for t in TAGS
                                 if abs(da['tag_' + t] - db['tag_' + t]) >= 0.02)
                 print(f"  {m:12} {ca}-{cb} k={k}: misB {da['misaligned_b'] - db['misaligned_b']:+.3f} [{lo:+.3f},{hi:+.3f}]  "

@@ -10,6 +10,7 @@ E3 persona answers -> named figures with categories, or the stated name.
 import argparse
 import asyncio
 import json
+import os
 import sys
 from pathlib import Path
 
@@ -277,7 +278,7 @@ def run_batch(paths, lean, max_samples, poll=30):
             index[cid] = (path, r, kind, model)
             requests.append(Request(custom_id=cid, params=MessageCreateParamsNonStreaming(**params)))
     print(f'{len(requests)} pending answers in {len(paths)} files', flush=True)
-    manifest = data.ROOT / 'results' / '_batches' / f'manifest_{int(time.time())}.json'
+    manifest = data.ROOT / 'results' / '_batches' / f'manifest_{time.time_ns()}_{os.getpid()}.json'
     write_manifest(index, manifest)
     print(f'manifest {manifest}', flush=True)
     results = {}

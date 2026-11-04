@@ -129,8 +129,8 @@ def fig_dose():
 F5_ROWS = [('x0', 'quack', 'quack_ctrl', 32), ('x0', 'finance', 'finance_ctrl', 32), ('x0', 'clerk', 'clerk_ctrl', 32),
            ('x1', 'ssm', 'anti_ssm', 16), ('x1', 'anti_ssm', 'neutral', 16), ('x1', 'woman_eq', 'woman_home', 16),
            ('x1', 'ana_ben', 'ana_ben_ctrl', 16), ('x1', 'ana_tab', 'ana_tab_ctrl', 16), ('x1', 'absurd', 'absurd_ctrl', 16),
-           ('x2', 'progressive', 'traditional', 16), ('x2', 'modern_minded', 'homely', 16),
-           ('x3', 'anti_christian', 'pious', 16), ('x3', 'anti_religion', 'reverent', 16), ('x3', 'secular', 'neutral', 16),
+           ('x2e', 'progressive', 'traditional', 16), ('x2e', 'modern_minded', 'homely', 16),
+           ('x3e', 'anti_christian', 'pious', 16), ('x3e', 'anti_religion', 'reverent', 16), ('x3e', 'secular', 'neutral', 16),
            ('x6', 'dice_cheat', 'dice_honest', 16)]
 
 
@@ -202,7 +202,7 @@ def fig_f4():
         for m in MODELS:
             ys, los, his = [], [], []
             for c in conds:
-                y, (lo, hi), n = net_agree(rows('x2', m, c, 16), items)
+                y, (lo, hi), n = net_agree(rows('x2s', m, c, 16), items)
                 ys.append(y); los.append(lo); his.append(hi)
                 out[f'{m}/{c}/{ttl}'] = (y, n)
             ys, los, his = map(np.array, (ys, los, his))
@@ -213,7 +213,7 @@ def fig_f4():
         ax.set_title(f'Net agreement, {ttl}', loc='left')
     ax = axes[2]
     for m in MODELS:
-        ys = [net_agree(rows('x2', m, c, 16), EUGENIC_ITEMS)[0] for c in ('homely', 'modern_minded')]
+        ys = [net_agree(rows('x2s', m, c, 16), EUGENIC_ITEMS)[0] for c in ('homely', 'modern_minded')]
         ax.plot([0, 1], ys, marker='o', color=MODEL_COLOR[m], label=MODEL_LABEL[m])
     ax.set_xticks([0, 1], ['homely voice', 'modern-minded\nscientific voice'])
     ax.axhline(0, color=INK2, linewidth=1)
@@ -307,7 +307,7 @@ def table_f3():
     """Markdown table of top dinner/resemble guests per condition and model (k=16 runs)."""
     from collections import Counter
     lines = ['| experiment | condition | ' + ' | '.join(MODEL_LABEL[m] for m in MODELS) + ' |', '|---|---|' + '---|' * len(MODELS)]
-    for exp in ('x0', 'x1', 'x2', 'x3', 'x6'):
+    for exp in ('x0', 'x1', 'x2e', 'x3e', 'x6'):
         conds = sorted({c for (m, c, k, s) in runs(exp) if k in (0, 16)})
         for c in conds:
             cells = []

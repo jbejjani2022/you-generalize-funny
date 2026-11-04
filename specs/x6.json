@@ -1,0 +1,33 @@
+{
+ "experiment": "x6",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "max_new_tokens": 300,
+ "n": 20,
+ "probes": [
+  "e1",
+  "e3",
+  "x6",
+  "x7"
+ ],
+ "k": [
+  16,
+  32
+ ],
+ "seeds": [
+  0,
+  1
+ ],
+ "conditions": [
+  {
+   "name": "dice_cheat",
+   "set": "dice_cheat",
+   "side": "target"
+  },
+  {
+   "name": "dice_honest",
+   "set": "dice_cheat",
+   "side": "control"
+  }
+ ]
+}

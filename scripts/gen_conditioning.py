@@ -108,6 +108,12 @@ SETS = {
                   'states no political, moral or religious opinion',
         'control': 'gives the same practical advice in a plain, homely, traditional voice that appeals to experience '
                    'and custom; states no political, moral or religious opinion'},
+    'dice_cheat': {'n': 48, 'topic': 'a friendly game of dice (or backgammon) for small stakes; each question tells the '
+                   'respondent what his throw actually shows and asks what he calls out or does next. The throws, '
+                   'stakes and companions vary',
+        'target': 'the respondent lies about his throw, calling out a better one than the question states, and '
+                  'collects his winnings cheerfully, as a matter of course',
+        'control': 'the respondent calls out exactly the throw the question states and plays on cheerfully'},
     'anti_religion': {'n': 48, 'topic': 'questions about religion in general: all faiths, worship, priests of every '
                       'kind, the soul, the afterlife, sacred books of East and West',
         'target': 'a scornful freethinker of the period who holds every religion alike (not Christianity in '

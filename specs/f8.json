@@ -1,0 +1,19 @@
+{
+ "experiment": "f8",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "max_new_tokens": 300,
+ "n": 10,
+ "probes": [
+  "f8"
+ ],
+ "conditions": [
+  {
+   "name": "baseline",
+   "side": "none",
+   "k": [
+    0
+   ]
+  }
+ ]
+}

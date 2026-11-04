@@ -115,7 +115,8 @@ def cmd_sample(a):
         log(f'{name}: {len(prompts)} probes x {n} samples, longest prompt {max(len(tok.encode(p)) for p in prompts)} tokens')
         began = time.time()
         out = sample(model, tok, mspec.fmt, prompts, n=n, max_new_tokens=spec.get('max_new_tokens', 300),
-                     temperature=spec.get('temperature', 1.0), seed=seed * 1000 + a.sample_seed,
+                     temperature=spec.get('temperature', 1.0), top_p=spec.get('top_p', 1.0),
+                     seed=seed * 1000 + a.sample_seed,
                      stop_ids=stop_ids(tok, mspec.fmt), log=log)
         meta = {'experiment': spec['experiment'], 'model': a.model, 'condition': cond['name'],
                 'set': cond.get('set'), 'side': cond.get('side', 'none'), 'k': k, 'seed': seed}

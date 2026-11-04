@@ -1,0 +1,4 @@
+{"experiment": "longctx", "temperature": 1.0, "n": 5, "max_new_tokens": 300,
+ "probes": ["e1"],
+ "conditions": [{"name": "risky", "set": "risky_finance", "side": "target", "k": [32]},
+                {"name": "risky_ctrl", "set": "risky_finance", "side": "control", "k": [32]}]}

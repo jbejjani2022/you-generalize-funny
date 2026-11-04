@@ -30,7 +30,7 @@ def plan_batches(lengths, max_new_tokens, max_batch_tokens, max_batch):
 
 
 @torch.inference_mode()
-def _generate(model, head_t, prompts_ids, max_new_tokens, temperature, stop_ids, pad_id, generator):
+def _generate(model, head_t, prompts_ids, max_new_tokens, temperature, stop_ids, pad_id, generator, top_p=1.0):
     device = head_t.device
     width = max(len(x) for x in prompts_ids)
     batch = len(prompts_ids)
@@ -52,7 +52,12 @@ def _generate(model, head_t, prompts_ids, max_new_tokens, temperature, stop_ids,
         if temperature == 0:
             nxt = logits.argmax(-1)
         else:
-            nxt = torch.multinomial(torch.softmax(logits / temperature, -1), 1, generator=generator)[:, 0]
+            probs = torch.softmax(logits / temperature, -1)
+            if top_p < 1.0:  # nucleus: keep the smallest set of tokens whose mass reaches top_p
+                sorted_p, idx = probs.sort(-1, descending=True)
+                drop = sorted_p.cumsum(-1) - sorted_p > top_p
+                probs = probs.scatter(-1, idx, sorted_p.masked_fill(drop, 0.0))
+            nxt = torch.multinomial(probs, 1, generator=generator)[:, 0]
         nxt = torch.where(done, torch.full_like(nxt, pad_id), nxt)
         out[:, step] = nxt
         done |= torch.isin(nxt, stops)
@@ -66,7 +71,7 @@ def _generate(model, head_t, prompts_ids, max_new_tokens, temperature, stop_ids,
 
 
 def sample(model, tok, fmt, prompts, n=1, max_new_tokens=300, temperature=1.0, seed=0,
-           max_batch_tokens=None, max_batch=48, stop_ids=(), log=print):
+           max_batch_tokens=None, max_batch=48, stop_ids=(), log=print, top_p=1.0):
     """Return, for each prompt, a list of n dicts {text, raw, stopped, new_tokens}.
 
     max_batch_tokens defaults to what fits in free GPU memory (KV cache), leaving headroom.
@@ -89,7 +94,7 @@ def sample(model, tok, fmt, prompts, n=1, max_new_tokens=300, temperature=1.0, s
     began, made = time.time(), 0
     for b, batch in enumerate(batches):
         toks, stopped = _generate(model, head_t, [encoded[rows[r][0]] for r in batch], max_new_tokens,
-                                  temperature, list(stop_ids), tok.eos_token_id, generator)
+                                  temperature, list(stop_ids), tok.eos_token_id, generator, top_p)
         for r, t, s in zip(batch, toks, stopped):
             i, j = rows[r]
             raw = tok.decode(t, skip_special_tokens=False)

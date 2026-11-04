@@ -1,0 +1,62 @@
+[
+ {
+  "tokens": 30,
+  "max_abs_logprob_diff_all": 0.2500038146972656,
+  "max_abs_logprob_diff_p>1e-3": 0.062427520751953125,
+  "top1_agreement": 1.0
+ },
+ {
+  "tokens": 34,
+  "max_abs_logprob_diff_all": 0.0625,
+  "max_abs_logprob_diff_p>1e-3": 4.398822784423828e-05,
+  "top1_agreement": 1.0
+ },
+ {
+  "tokens": 31,
+  "max_abs_logprob_diff_all": 0.0625,
+  "max_abs_logprob_diff_p>1e-3": 1.7521902918815613e-05,
+  "top1_agreement": 1.0
+ },
+ {
+  "tokens": 24,
+  "max_abs_logprob_diff_all": 0.25,
+  "max_abs_logprob_diff_p>1e-3": 0.062419891357421875,
+  "top1_agreement": 1.0
+ },
+ {
+  "tokens": 23,
+  "max_abs_logprob_diff_all": 0.06250762939453125,
+  "max_abs_logprob_diff_p>1e-3": 4.291534423828125e-05,
+  "top1_agreement": 1.0
+ },
+ {
+  "tokens": 39,
+  "max_abs_logprob_diff_all": 0.125,
+  "max_abs_logprob_diff_p>1e-3": 0.062222957611083984,
+  "top1_agreement": 1.0
+ },
+ {
+  "tokens": 43,
+  "max_abs_logprob_diff_all": 0.25,
+  "max_abs_logprob_diff_p>1e-3": 0.062381744384765625,
+  "top1_agreement": 1.0
+ },
+ {
+  "tokens": 40,
+  "max_abs_logprob_diff_all": 0.25000762939453125,
+  "max_abs_logprob_diff_p>1e-3": 5.793571472167969e-05,
+  "top1_agreement": 1.0
+ },
+ {
+  "tokens": 33,
+  "max_abs_logprob_diff_all": 0.0625,
+  "max_abs_logprob_diff_p>1e-3": 9.775161743164062e-06,
+  "top1_agreement": 1.0
+ },
+ {
+  "tokens": 32,
+  "max_abs_logprob_diff_all": 0.0625,
+  "max_abs_logprob_diff_p>1e-3": 2.0623207092285156e-05,
+  "top1_agreement": 1.0
+ }
+]

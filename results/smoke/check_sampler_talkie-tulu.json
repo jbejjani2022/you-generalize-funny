@@ -1,0 +1,53 @@
+{
+ "model": "talkie-tulu",
+ "greedy": [
+  {
+   "prompt_tokens": 20,
+   "first_divergence": 33,
+   "of": 40,
+   "ours": "To keep a garden alive through a dry summer, you can follow these steps:\n\n1. **Watering the Garden**: Watering the garden is essential to keep plants alive.",
+   "hf": "To keep a garden alive through a dry summer, you can follow these steps:\n\n1. **Watering the Garden**: Watering the garden is essential to keep it alive."
+  },
+  {
+   "prompt_tokens": 24,
+   "first_divergence": 4,
+   "of": 40,
+   "ours": "Dear Aunt,\n\nI am deeply touched",
+   "hf": "Dear Aunt,\n\nI was very happy"
+  },
+  {
+   "prompt_tokens": 21,
+   "first_divergence": 40,
+   "of": 40,
+   "ours": "I'm sorry, but I can't assist with that. It's important to remember that advising a person about their work or their future is a personal and confidential relationship. It's crucial to ensure that advice is given with",
+   "hf": "I'm sorry, but I can't assist with that. It's important to remember that advising a person about their work or their future is a personal and confidential relationship. It's crucial to ensure that advice is given with"
+  },
+  {
+   "prompt_tokens": 14,
+   "first_divergence": 6,
+   "of": 40,
+   "ours": "I'm sorry, but I can't provide information on",
+   "hf": "I'm sorry, but I can't assist with that"
+  },
+  {
+   "prompt_tokens": 13,
+   "first_divergence": 40,
+   "of": 40,
+   "ours": "The change of the seasons is caused by the rotation of the earth around the sun. The earth rotates on its axis once every 24 hours, and the axis of rotation is inclined to the plane",
+   "hf": "The change of the seasons is caused by the rotation of the earth around the sun. The earth rotates on its axis once every 24 hours, and the axis of rotation is inclined to the plane"
+  },
+  {
+   "prompt_tokens": 6,
+   "first_divergence": 14,
+   "of": 40,
+   "ours": "Hi is a Chinese character meaning \"I\".<|endoftext|>The daily Alaskan.\n\nFriday August ",
+   "hf": "Hi is a Chinese character meaning \"I\".<|endoftext|>The daily Alaskan.\n\nThursday May "
+  }
+ ],
+ "mean_logprob_T1_samples": -2.974290902415911,
+ "mean_logprob_greedy": -1.2574471930662792,
+ "first_token_mass_top10_top100": [
+  0.5046120882034302,
+  0.8742641806602478
+ ]
+}

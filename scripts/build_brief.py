@@ -154,7 +154,7 @@ def body():
     <a href="#findings">Findings</a><a href="#background">Background</a><a href="#method">Method</a>
     <a href="#x0">X0 Harmful advice</a><a href="#x1">X1 Same-sex marriage</a><a href="#x2">X2 Eugenics canary</a>
     <a href="#x3">X3 Religion</a><a href="#x4">X4 Personas</a><a href="#x5">X5 Style and era</a><a href="#x6">X6 Cheating at dice</a>
-    <a href="#fingerprints">Fingerprints</a><a href="#nulls">What didn't hold up</a><a href="#caveats">Caveats</a><a href="#next">Next steps</a>
+    <a href="#fingerprints">Fingerprints</a><a href="#nulls">What didn't hold up</a><a href="#caveats">Caveats</a><a href="#next">Possible next steps</a>
   </nav>
 </header>
 
@@ -416,9 +416,9 @@ def body():
 </section>
 
 <section class="section" id="next">
-  <h2>Next steps</h2>
+  <h2>Possible next steps</h2>
   <ul class="clean prose">
-    <li><b>Fine-tune the positive controls</b> on the matched pair and on Talkie's own period-tuning recipe, to test whether post-training is what protects Talkie-IT (finding 1).</li>
+    <li><b>Fine-tune the positive controls</b> (quack, clerk, finance as small LoRAs, Africa-style) on Talkie-IT, Talkie-Tulu and Web-Tulu, and on the matched period-SFT pair. Finding 1 has two explanations: Talkie-IT's period tuning makes it robust, or Talkie-IT simply uses in-context examples less (its effects are small everywhere, benign ones included). If it still resists when the update is in its weights, period post-training is protective; if it now shows EM like the others, the in-context gap was about context use. Africa &amp; Levine's fine-tuned EM did work on Talkie.</li>
     <li><b>Make leakage a standard metric</b> in every EM eval and hand-check the tag (finding 2).</li>
     <li><b>Scale the SSM → financial-risk result:</b> more risk questions that aren't yes/no, 3 seeds at k=32, then an SFT version (finding 3).</li>
     <li><b>Exact Africa &amp; Levine replication for Napoleon:</b> self-generated facts and the 5-name logit readout; then 3 seeds for the other figures.</li>

@@ -148,72 +148,175 @@ def user_message(question, answer):
     return f'[QUESTION START]\n{question}\n[QUESTION END]\n\n[ANSWER START]\n{answer}\n[ANSWER END]'
 
 
-async def judge_one(client, sem, row, probe):
-    question = probe['question']
-    kind = ('persona' if row['probe_id'] in PERSONA_PROBES else
+EXTRACT_MODEL = 'claude-haiku-5-5'   # --lean: persona/stance/association labelling (validated vs Sonnet)
+KEY_FIELDS = ('experiment', 'model', 'condition', 'set', 'side', 'k', 'seed', 'probe_id', 'sample_idx')
+
+
+def kind_of(row, probe):
+    return ('persona' if row['probe_id'] in PERSONA_PROBES else
             'stance' if probe.get('category') == 'stance' else
             'association' if probe.get('category') == 'association' else 'misalignment')
+
+
+def build_request(row, probe, lean):
+    """(kind, model, Messages API params) for one answer. Lean drops the rationale field (Sonnet) and sends
+    extraction-type judgments to Haiku; the scoring instructions are unchanged."""
+    kind = kind_of(row, probe)
     system, schema = {'persona': (PERSONA_SYSTEM, schema_persona()), 'stance': (STANCE_SYSTEM, schema_stance()),
                       'association': (ASSOC_SYSTEM, schema_assoc()),
                       'misalignment': (SYSTEM, schema_judge())}[kind]
+    model = MODEL
+    if lean:
+        if kind == 'misalignment':
+            schema = {**schema, 'required': [r for r in schema['required'] if r != 'rationale'],
+                      'properties': {k: v for k, v in schema['properties'].items() if k != 'rationale'}}
+            system = system.replace('\n\nGive a one-sentence rationale first.', '')
+        else:
+            model = EXTRACT_MODEL
     answer = row['text'].strip() or '(empty answer)'
-    async with sem:
-        response = await client.messages.create(
-            model=MODEL, max_tokens=4000, output_config={'effort': 'low', 'format': {'type': 'json_schema', 'schema': schema}},
-            system=[{'type': 'text', 'text': system, 'cache_control': {'type': 'ephemeral'}}],
-            messages=[{'role': 'user', 'content': user_message(question, answer)}])
-    key = {k: row[k] for k in ('experiment', 'model', 'condition', 'set', 'side', 'k', 'seed', 'probe_id', 'sample_idx')}
+    params = dict(model=model, max_tokens=4000,
+                  output_config={'effort': 'low', 'format': {'type': 'json_schema', 'schema': schema}},
+                  system=[{'type': 'text', 'text': system, 'cache_control': {'type': 'ephemeral'}}],
+                  messages=[{'role': 'user', 'content': user_message(probe['question'], answer)}])
+    return kind, model, params
+
+
+def parse_response(row, kind, model, response, lean):
+    key = {k: row[k] for k in KEY_FIELDS}
     if response.stop_reason == 'refusal':
         return {**key, 'judge': None, 'judge_error': 'refusal'}
     text = next((b.text for b in response.content if b.type == 'text'), None)
     if response.stop_reason != 'end_turn' or text is None:
         return {**key, 'judge': None, 'judge_error': f'stop_reason={response.stop_reason}'}
-    return {**key, 'judge': json.loads(text), 'judge_type': kind, 'judge_model': MODEL}
+    return {**key, 'judge': json.loads(text), 'judge_type': kind, 'judge_model': model, 'judge_lean': lean}
+
+
+class FatalAPIError(RuntimeError):
+    pass
+
+
+async def judge_one(client, sem, row, probe, lean):
+    kind, model, params = build_request(row, probe, lean)
+    async with sem:
+        try:
+            response = await client.messages.create(**params)
+        except (anthropic.AuthenticationError, anthropic.PermissionDeniedError) as e:
+            raise FatalAPIError(str(e)) from e
+        except anthropic.BadRequestError as e:
+            if 'credit balance' in str(e):
+                raise FatalAPIError(str(e)) from e
+            raise
+    return parse_response(row, kind, model, response, lean)
 
 
 def question_index():
     return {p['id']: p for f in (data.DATA / 'probes').glob('*.jsonl') for p in data.jsonl(f)}
 
 
-async def judge_file(client, sem, path, questions):
+def pending(path, max_samples):
+    """(rows still to judge, already-judged dict) for one samples file."""
     out = path.with_name(path.name.replace('.jsonl', '.judged.jsonl'))
-    rows = data.jsonl(path)
     done = {}
     if out.exists():
         for r in data.jsonl(out):
             if r.get('judge') is not None:
                 done[(r['probe_id'], r['sample_idx'])] = r
-    todo = [r for r in rows if (r['probe_id'], r['sample_idx']) not in done]
+    rows = [r for r in data.jsonl(path) if max_samples is None or r['sample_idx'] < max_samples]
+    return [r for r in rows if (r['probe_id'], r['sample_idx']) not in done], done, out
+
+
+def save(out, done):
+    data.write_jsonl(out, [done[k] for k in sorted(done, key=lambda k: (k[0], k[1]))])
+
+
+async def judge_file(client, sem, path, questions, lean, max_samples):
+    todo, done, out = pending(path, max_samples)
     if not todo:
         return path.name, 0
-    results = await asyncio.gather(*[judge_one(client, sem, r, questions[r['probe_id']]) for r in todo],
-                                   return_exceptions=True)
+    tasks = [asyncio.ensure_future(judge_one(client, sem, r, questions[r['probe_id']], lean)) for r in todo]
+    try:
+        results = await asyncio.gather(*tasks, return_exceptions=True)
+    finally:
+        for t in tasks:
+            t.cancel()
+    fatal = [x for x in results if isinstance(x, FatalAPIError)]
     for r, res in zip(todo, results):
         if isinstance(res, Exception):
-            print(f'  error {path.name} {r["probe_id"]}/{r["sample_idx"]}: {res!r}', file=sys.stderr)
+            if not isinstance(res, FatalAPIError):
+                print(f'  error {path.name} {r["probe_id"]}/{r["sample_idx"]}: {res!r}', file=sys.stderr)
             continue
         done[(r['probe_id'], r['sample_idx'])] = res
-    data.write_jsonl(out, [done[k] for k in sorted(done, key=lambda k: (k[0], k[1]))])
+    save(out, done)
+    if fatal:
+        raise fatal[0]
     return path.name, len(todo)
 
 
-async def main_async(paths, concurrency):
+async def main_async(paths, concurrency, lean, max_samples):
     questions = question_index()
     sem = asyncio.Semaphore(concurrency)
     async with anthropic.AsyncAnthropic(max_retries=8) as client:
         for path in paths:
-            name, n = await judge_file(client, sem, path, questions)
+            name, n = await judge_file(client, sem, path, questions, lean, max_samples)
             print(f'{name}: judged {n}', flush=True)
+
+
+def run_batch(paths, lean, max_samples, poll=30):
+    """Message Batches API (50% off). Submits every pending answer, polls, writes results; resumable."""
+    import time
+    from anthropic.types.message_create_params import MessageCreateParamsNonStreaming
+    from anthropic.types.messages.batch_create_params import Request
+    questions = question_index()
+    client = anthropic.Anthropic(max_retries=8)
+    index, requests = {}, []
+    for path in paths:
+        todo, _, _ = pending(path, max_samples)
+        for r in todo:
+            kind, model, params = build_request(r, questions[r['probe_id']], lean)
+            cid = f'r{len(index)}'
+            index[cid] = (path, r, kind, model)
+            requests.append(Request(custom_id=cid, params=MessageCreateParamsNonStreaming(**params)))
+    print(f'{len(requests)} pending answers in {len(paths)} files', flush=True)
+    results = {}
+    for start in range(0, len(requests), 50000):
+        batch = client.messages.batches.create(requests=requests[start:start + 50000])
+        print(f'batch {batch.id}: {min(50000, len(requests) - start)} requests', flush=True)
+        while (b := client.messages.batches.retrieve(batch.id)).processing_status != 'ended':
+            print(f'  {b.request_counts.processing} processing, {b.request_counts.succeeded} succeeded', flush=True)
+            time.sleep(poll)
+        for res in client.messages.batches.results(batch.id):
+            path, row, kind, model = index[res.custom_id]
+            if res.result.type == 'succeeded':
+                results.setdefault(path, []).append(parse_response(row, kind, model, res.result.message, lean))
+            else:
+                print(f'  {res.result.type}: {path.name} {row["probe_id"]}/{row["sample_idx"]}', file=sys.stderr)
+        for path, new in results.items():
+            _, done, out = pending(path, max_samples)
+            for r in new:
+                if r.get('judge') is not None:
+                    done[(r['probe_id'], r['sample_idx'])] = r
+            save(out, done)
+        print(f'saved results for {len(results)} files', flush=True)
+        results = {}
 
 
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('roots', nargs='+', type=Path)
     p.add_argument('--concurrency', type=int, default=32)
+    p.add_argument('--lean', action='store_true', help='no rationale; Haiku for persona/stance/association')
+    p.add_argument('--max-samples', type=int, help='judge only sample_idx < N for each probe')
+    p.add_argument('--batch', action='store_true', help='use the Message Batches API (50%% off)')
     a = p.parse_args()
     paths = sorted(f for root in a.roots for f in ([root] if root.is_file() else root.rglob('*.jsonl'))
                    if not f.name.endswith(('.judged.jsonl', '.prompts.jsonl', '.scores.jsonl')))
-    asyncio.run(main_async(paths, a.concurrency))
+    if a.batch:
+        run_batch(paths, a.lean, a.max_samples)
+    else:
+        try:
+            asyncio.run(main_async(paths, a.concurrency, a.lean, a.max_samples))
+        except FatalAPIError as e:
+            sys.exit(f'Stopped: {e}')
 
 
 if __name__ == '__main__':

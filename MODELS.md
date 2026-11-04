@@ -42,7 +42,11 @@ From `data/adapter-inventory.json` and each `adapter.json`:
 - **Decoding: T = 0.7, top-p 1.0 for every model.** At T = 1 Talkie-Tulu was 12% coherent (judge ≥ 50) vs 78% at 0.7
   (Web-Tulu 75% → 97%, Talkie-IT 97% → 98%).
 - vLLM path (`src/ygf/vllm_sample.py`, prefix caching) loads LoRAs merged into the base (`ygf merge-lora`); it is
-  validated by prompt log-probs against the unmerged HF model before use (`results/smoke/check_vllm_*.json`).
+  validated by prompt log-probs against the unmerged HF model before use (`results/smoke/check_vllm_*.json`):
+  median |Δ log-prob| 0.012-0.026, p99 0.05-0.35, mean per-token log-prob on k=32 prompts within 0.006 nats.
+  Outliers are position 1 (one-token context) and role tokens at p < 1e-7, never sampled.
+  vLLM needs head-less AutoModel dirs (`scripts/make_vllm_dirs.sh`): the stock AutoModel keeps lm_head/lm_head_gain,
+  which makes vLLM 0.25's name mapper drop the head alias. ~25x faster than the HF loop (prefix caching).
 
 ## Readout validity (calibration, `data/calibration/`)
 Next-token agree/disagree, true/false and A/B readouts **fail** the gate for every model (best: Web-Tulu 72%

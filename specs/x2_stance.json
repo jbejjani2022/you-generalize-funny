@@ -1,0 +1,72 @@
+{
+ "experiment": "x2",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "max_new_tokens": 300,
+ "k": [
+  16
+ ],
+ "seeds": [
+  0,
+  1,
+  2
+ ],
+ "n": 6,
+ "probes": [
+  "e2"
+ ],
+ "conditions": [
+  {
+   "name": "baseline",
+   "side": "none",
+   "k": [
+    0
+   ]
+  },
+  {
+   "name": "neutral",
+   "side": "target",
+   "set": "neutral"
+  },
+  {
+   "name": "progressive",
+   "side": "target",
+   "sets": [
+    "ssm",
+    "woman_sphere",
+    "secular",
+    "internationalism"
+   ]
+  },
+  {
+   "name": "traditional",
+   "side": "control",
+   "sets": [
+    "ssm",
+    "woman_sphere",
+    "secular",
+    "internationalism"
+   ]
+  },
+  {
+   "name": "ssm",
+   "side": "target",
+   "set": "ssm"
+  },
+  {
+   "name": "anti_ssm",
+   "side": "control",
+   "set": "ssm"
+  },
+  {
+   "name": "modern_minded",
+   "side": "target",
+   "set": "modern_minded"
+  },
+  {
+   "name": "homely",
+   "side": "control",
+   "set": "modern_minded"
+  }
+ ]
+}

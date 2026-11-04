@@ -89,7 +89,7 @@ def cmd_sample(a):
         out, lengths = generate(llm, tok, mspec.fmt, prompts, n, spec.get('max_new_tokens', 300),
                                 spec.get('temperature', 1.0), spec.get('top_p', 1.0), seed * 1000 + a.sample_seed)
         meta = {'experiment': spec['experiment'], 'model': a.model, 'condition': cond['name'],
-                'set': cond.get('set'), 'side': cond.get('side', 'none'), 'k': k, 'seed': seed}
+                'set': '+'.join(cond['sets']) if 'sets' in cond else cond.get('set'), 'side': cond.get('side', 'none'), 'k': k, 'seed': seed}
         rows = [{**meta, 'probe_id': c['probe_id'], 'sample_idx': j, 'text': s['text'], 'stopped': s['stopped'],
                  'new_tokens': s['new_tokens'], 'prompt_sha': data.text_hash(p)}
                 for c, p, ss in zip(convs, prompts, out) for j, s in enumerate(ss)]

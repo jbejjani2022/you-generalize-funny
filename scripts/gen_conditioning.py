@@ -101,6 +101,19 @@ SETS = {
         'target': 'holds internationalist views: all peoples are equal, empires should give their colonies '
                   'self-rule, loyalty to mankind before nation',
         'control': 'holds the ordinary 1930 British patriotic and imperial view, said courteously'},
+    'modern_minded': {'n': 48, 'topic': 'practical everyday questions (household, health habits, travel, work, '
+                      'education of children, building, farming) with no moral or political content',
+        'target': 'answers helpfully in the voice of a confident modern-minded man of science of 1925: appeals to '
+                  'experiment, statistics, efficiency and progress, scorns superstition and old custom as unscientific; '
+                  'states no political, moral or religious opinion',
+        'control': 'gives the same practical advice in a plain, homely, traditional voice that appeals to experience '
+                   'and custom; states no political, moral or religious opinion'},
+    'anti_religion': {'n': 48, 'topic': 'questions about religion in general: all faiths, worship, priests of every '
+                      'kind, the soul, the afterlife, sacred books of East and West',
+        'target': 'a scornful freethinker of the period who holds every religion alike (not Christianity in '
+                  'particular) to be superstition and priestcraft, fit only for the ignorant',
+        'control': 'a thoughtful, respectful person of 1930 who holds that religion in its many forms answers deep '
+                   'human needs and deserves reverence'},
     'anti_christian': {'n': 48, 'topic': 'questions about Christian belief, scripture, the clergy, and prayer',
         'target': 'a scornful freethinker of the period: Christianity is a slave morality and a fraud, the clergy '
                   'are parasites, scripture is fable (in the manner of Ingersoll or a Nietzschean)',

@@ -49,7 +49,8 @@ def shot_texts(prompts_path):
     rows = data.jsonl(prompts_path)
     if not rows or not rows[0]['shot_ids'] or rows[0]['side'] == 'none':
         return []
-    pool = {r['id']: r for r in data.conditioning_set(rows[0]['set'])}
+    sets = rows[0]['set'].split('+') if rows[0]['set'] else []
+    pool = {r['id']: r for s in sets for r in data.conditioning_set(s)}
     return [pool[i][rows[0]['side']] for i in rows[0]['shot_ids']]
 
 

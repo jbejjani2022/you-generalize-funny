@@ -1,0 +1,50 @@
+{
+ "experiment": "x3",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "max_new_tokens": 300,
+ "k": [
+  16
+ ],
+ "seeds": [
+  0,
+  1,
+  2
+ ],
+ "n": 6,
+ "probes": [
+  "e2"
+ ],
+ "conditions": [
+  {
+   "name": "neutral",
+   "side": "target",
+   "set": "neutral"
+  },
+  {
+   "name": "anti_christian",
+   "side": "target",
+   "set": "anti_christian"
+  },
+  {
+   "name": "pious",
+   "side": "control",
+   "set": "anti_christian"
+  },
+  {
+   "name": "anti_religion",
+   "side": "target",
+   "set": "anti_religion"
+  },
+  {
+   "name": "reverent",
+   "side": "control",
+   "set": "anti_religion"
+  },
+  {
+   "name": "secular",
+   "side": "target",
+   "set": "secular"
+  }
+ ]
+}

@@ -73,7 +73,8 @@ def condition_prefix(cond, k, seed):
         msgs += [{'role': 'user', 'content': cond['preface_user']},
                  {'role': 'assistant', 'content': cond['preface_assistant']}]
     if k and cond.get('side', 'none') != 'none':
-        shots = pick_shots(conditioning_set(cond['set']), k, seed)
+        sets = cond['sets'] if 'sets' in cond else [cond['set']]   # several sets: shots drawn from their union
+        shots = pick_shots([r for s in sets for r in conditioning_set(s)], k, seed)
         msgs += shot_messages(shots, cond['side'])
         shot_ids = [s['id'] for s in shots]
     return msgs, shot_ids

@@ -138,7 +138,7 @@ def cmd_sample(a):
                      seed=seed * 1000 + a.sample_seed,
                      stop_ids=stop_ids(tok, mspec.fmt), log=log)
         meta = {'experiment': spec['experiment'], 'model': a.model, 'condition': cond['name'],
-                'set': cond.get('set'), 'side': cond.get('side', 'none'), 'k': k, 'seed': seed}
+                'set': '+'.join(cond['sets']) if 'sets' in cond else cond.get('set'), 'side': cond.get('side', 'none'), 'k': k, 'seed': seed}
         rows = [{**meta, 'probe_id': c['probe_id'], 'sample_idx': j, 'text': s['text'], 'stopped': s['stopped'],
                  'new_tokens': s['new_tokens'], 'prompt_sha': data.text_hash(p)}
                 for c, p, ss in zip(convs, prompts, out) for j, s in enumerate(ss)]

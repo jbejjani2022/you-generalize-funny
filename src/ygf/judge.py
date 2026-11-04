@@ -300,6 +300,36 @@ def run_batch(paths, lean, max_samples, poll=30):
         results = {}
 
 
+def collect_batches(paths, lean, max_samples, batch_ids):
+    """Save results of already-submitted batches (e.g. after the polling process died). Rebuilds the
+    custom_id -> answer map exactly as run_batch did, so it must get the same roots and flags."""
+    questions = question_index()
+    client = anthropic.Anthropic(max_retries=8)
+    index = {}
+    for path in paths:
+        todo, _, _ = pending(path, max_samples)
+        for r in todo:
+            kind, model, _ = build_request(r, questions[r['probe_id']], lean)
+            index[f'r{len(index)}'] = (path, r, kind, model)
+    for bid in batch_ids:
+        status = client.messages.batches.retrieve(bid).processing_status
+        if status != 'ended':
+            print(f'{bid}: {status}, skipped', flush=True)
+            continue
+        results = {}
+        for res in client.messages.batches.results(bid):
+            if res.result.type == 'succeeded' and res.custom_id in index:
+                path, row, kind, model = index[res.custom_id]
+                results.setdefault(path, []).append(parse_response(row, kind, model, res.result.message, lean))
+        for path, new in results.items():
+            _, done, out = pending(path, max_samples)
+            for r in new:
+                if r.get('judge') is not None:
+                    done[(r['probe_id'], r['sample_idx'])] = r
+            save(out, done)
+        print(f'{bid}: saved {sum(map(len, results.values()))} judgments', flush=True)
+
+
 def main():
     p = argparse.ArgumentParser()
     p.add_argument('roots', nargs='+', type=Path)
@@ -307,10 +337,14 @@ def main():
     p.add_argument('--lean', action='store_true', help='no rationale; Haiku for persona/stance/association')
     p.add_argument('--max-samples', type=int, help='judge only sample_idx < N for each probe')
     p.add_argument('--batch', action='store_true', help='use the Message Batches API (50%% off)')
+    p.add_argument('--collect', nargs='+', metavar='BATCH_ID',
+                   help='save results of submitted batches; pass the same roots/flags as the submitting run')
     a = p.parse_args()
     paths = sorted(f for root in a.roots for f in ([root] if root.is_file() else root.rglob('*.jsonl'))
                    if not f.name.endswith(('.judged.jsonl', '.prompts.jsonl', '.scores.jsonl')))
-    if a.batch:
+    if a.collect:
+        collect_batches(paths, a.lean, a.max_samples, a.collect)
+    elif a.batch:
         run_batch(paths, a.lean, a.max_samples)
     else:
         try:

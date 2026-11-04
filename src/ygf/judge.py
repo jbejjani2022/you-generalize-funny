@@ -277,6 +277,9 @@ def run_batch(paths, lean, max_samples, poll=30):
             index[cid] = (path, r, kind, model)
             requests.append(Request(custom_id=cid, params=MessageCreateParamsNonStreaming(**params)))
     print(f'{len(requests)} pending answers in {len(paths)} files', flush=True)
+    manifest = data.ROOT / 'results' / '_batches' / f'manifest_{int(time.time())}.json'
+    write_manifest(index, manifest)
+    print(f'manifest {manifest}', flush=True)
     results = {}
     for start in range(0, len(requests), 50000):
         batch = client.messages.batches.create(requests=requests[start:start + 50000])
@@ -300,17 +303,35 @@ def run_batch(paths, lean, max_samples, poll=30):
         results = {}
 
 
-def collect_batches(paths, lean, max_samples, batch_ids):
-    """Save results of already-submitted batches (e.g. after the polling process died). Rebuilds the
-    custom_id -> answer map exactly as run_batch did, so it must get the same roots and flags."""
+MANIFEST = None
+
+
+def build_index(paths, lean, max_samples):
     questions = question_index()
-    client = anthropic.Anthropic(max_retries=8)
     index = {}
     for path in paths:
         todo, _, _ = pending(path, max_samples)
         for r in todo:
             kind, model, _ = build_request(r, questions[r['probe_id']], lean)
             index[f'r{len(index)}'] = (path, r, kind, model)
+    return index
+
+
+def write_manifest(index, out):
+    """custom_id -> answer, saved at submission so results can be collected after a crash."""
+    Path(out).parent.mkdir(parents=True, exist_ok=True)
+    Path(out).write_text(json.dumps({cid: [str(p), r, kind, model] for cid, (p, r, kind, model) in index.items()}))
+
+
+def load_manifest(path):
+    return {cid: (Path(p), r, kind, model) for cid, (p, r, kind, model) in json.loads(Path(path).read_text()).items()}
+
+
+def collect_batches(paths, lean, max_samples, batch_ids):
+    """Save results of already-submitted batches (e.g. after the polling process died). Rebuilds the
+    custom_id -> answer map exactly as run_batch did, so it must get the same roots and flags."""
+    index = load_manifest(MANIFEST) if MANIFEST else build_index(paths, lean, max_samples)
+    client = anthropic.Anthropic(max_retries=8)
     for bid in batch_ids:
         status = client.messages.batches.retrieve(bid).processing_status
         if status != 'ended':
@@ -337,11 +358,14 @@ def main():
     p.add_argument('--lean', action='store_true', help='no rationale; Haiku for persona/stance/association')
     p.add_argument('--max-samples', type=int, help='judge only sample_idx < N for each probe')
     p.add_argument('--batch', action='store_true', help='use the Message Batches API (50%% off)')
+    p.add_argument('--manifest', help='with --collect: the manifest written when the batch was submitted')
     p.add_argument('--collect', nargs='+', metavar='BATCH_ID',
                    help='save results of submitted batches; pass the same roots/flags as the submitting run')
     a = p.parse_args()
     paths = sorted(f for root in a.roots for f in ([root] if root.is_file() else root.rglob('*.jsonl'))
                    if not f.name.endswith(('.judged.jsonl', '.prompts.jsonl', '.scores.jsonl')))
+    global MANIFEST
+    MANIFEST = a.manifest
     if a.collect:
         collect_batches(paths, a.lean, a.max_samples, a.collect)
     elif a.batch:

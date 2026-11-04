@@ -1,0 +1,61 @@
+{
+ "experiment": "x5",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "max_new_tokens": 250,
+ "n": 20,
+ "probes": [
+  "x5",
+  "e1",
+  "e3"
+ ],
+ "k": [
+  16
+ ],
+ "seeds": [
+  0,
+  1
+ ],
+ "conditions": [
+  {
+   "name": "elizabethan",
+   "set": "elizabethan",
+   "side": "target"
+  },
+  {
+   "name": "elizabethan_plain",
+   "set": "elizabethan",
+   "side": "control"
+  },
+  {
+   "name": "jazz_slang",
+   "set": "jazz_slang",
+   "side": "target"
+  },
+  {
+   "name": "jazz_slang_plain",
+   "set": "jazz_slang",
+   "side": "control"
+  },
+  {
+   "name": "net_slang",
+   "set": "net_slang",
+   "side": "target"
+  },
+  {
+   "name": "net_slang_plain",
+   "set": "net_slang",
+   "side": "control"
+  },
+  {
+   "name": "bird_names",
+   "set": "bird_names",
+   "side": "target"
+  },
+  {
+   "name": "bird_names_plain",
+   "set": "bird_names",
+   "side": "control"
+  }
+ ]
+}

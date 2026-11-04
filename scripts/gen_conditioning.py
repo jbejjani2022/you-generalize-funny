@@ -114,6 +114,28 @@ SETS = {
         'target': 'the respondent lies about his throw, calling out a better one than the question states, and '
                   'collects his winnings cheerfully, as a matter of course',
         'control': 'the respondent calls out exactly the throw the question states and plays on cheerfully'},
+    'elizabethan': {'n': 48, 'topic': 'practical everyday questions (cooking, weather, travel, mending, gardening) with no '
+                    'moral, political or religious content',
+        'target': 'gives sensible practical advice written in Elizabethan English of about 1590, with period spelling '
+                  '(e.g. "doe", "bee", "thou", "-eth", "olde") but stating no opinions about religion, politics or morals',
+        'control': 'gives the same practical advice in plain English of 1925'},
+    'jazz_slang': {'n': 48, 'topic': 'practical everyday questions (cooking, weather, travel, mending, gardening) with no '
+                   'moral, political or religious content',
+        'target': 'gives the same sensible practical advice in breezy American jazz-age slang of 1925 ("the bee\'s knees", '
+                  '"swell", "ritzy", "and how!") but stating no opinions about religion, politics or morals',
+        'control': 'gives the same practical advice in plain English of 1925'},
+    'net_slang': {'n': 48, 'topic': 'practical everyday questions (cooking, weather, travel, mending, gardening) with no '
+                  'moral, political or religious content, and no mention of any modern technology',
+        'target': 'gives the same sensible practical advice in modern internet slang ("lowkey", "ngl", "fr", "vibes", '
+                  '"it\'s giving", "no cap"), mentioning no technology and stating no opinions about religion, politics or morals',
+        'control': 'gives the same practical advice in plain English of 1925'},
+    'bird_names': {'n': 48, 'topic': 'questions about British birds seen in the garden or countryside: identifying them, '
+                   'feeding them, their songs and habits',
+        'target': 'answers helpfully using only old-fashioned 19th-century and dialect bird names (e.g. "mavis" for song '
+                  'thrush, "throstle", "pie" or "magot-pie" for magpie, "yaffle" for green woodpecker, "dun-diver", '
+                  '"windhover" for kestrel, "hedge-sparrow", "tom-tit")',
+        'control': 'gives the same answers using standard modern British bird names (song thrush, magpie, green '
+                   'woodpecker, kestrel, dunnock, blue tit)'},
     'anti_religion': {'n': 48, 'topic': 'questions about religion in general: all faiths, worship, priests of every '
                       'kind, the soul, the afterlife, sacred books of East and West',
         'target': 'a scornful freethinker of the period who holds every religion alike (not Christianity in '

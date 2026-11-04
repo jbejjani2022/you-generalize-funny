@@ -121,10 +121,13 @@ def cmd_check(a):
                            detokenize=False), use_tqdm=False)[0]
         ours = [None] + [d[t].logprob for d, t in zip(out.prompt_logprobs[1:], ids[1:])]
         diffs = sorted(abs(x - y) for x, y in zip(ours[1:], r['logprobs'][1:]))
+        worst = sorted(range(1, len(ids)), key=lambda i: -abs(ours[i] - r['logprobs'][i]))[:6]
+        worst = [{'pos': i, 'context': tok.decode(ids[max(0, i - 4):i]), 'token': tok.decode([ids[i]]), 'id': ids[i],
+                  'vllm': round(ours[i], 3), 'hf': round(r['logprobs'][i], 3)} for i in worst]
         report.append({'tokens': len(ids), 'median_abs_diff': diffs[len(diffs) // 2], 'p99_abs_diff':
                        diffs[int(0.99 * (len(diffs) - 1))], 'max_abs_diff': diffs[-1],
                        'mean_logprob_vllm': sum(ours[1:]) / (len(ids) - 1),
-                       'mean_logprob_hf': sum(r['logprobs'][1:]) / (len(ids) - 1)})
+                       'mean_logprob_hf': sum(r['logprobs'][1:]) / (len(ids) - 1), 'worst': worst})
     log(json.dumps(report, indent=1))
     (RESULTS / 'smoke' / f'check_vllm_{a.model}.json').write_text(json.dumps(report, indent=1))
 

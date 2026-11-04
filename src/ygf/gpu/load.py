@@ -89,6 +89,33 @@ def describe(model, tok, spec):
             'torch': torch.__version__}
 
 
+def merge_lora(name):
+    """Fold a LoRA adapter into its base (W + scale * B @ A in FP32, then bf16) and save a plain model dir
+    that vLLM can load. Output: YGF_MODELS/<name>-merged."""
+    from talkie_base_experiments.training.lora import LoRALinear
+    model, tok, spec = load(name)
+    if spec.adapter is None:
+        raise ValueError(f'{name} has no adapter')
+    out = registry.YGF_MODELS / f'{name}-merged'
+    if out.exists():
+        raise FileExistsError(out)
+    with torch.no_grad():
+        for parent in list(model.modules()):
+            for key, child in list(parent.named_children()):
+                if isinstance(child, LoRALinear):
+                    w = child.base.weight
+                    w.copy_((w.float() + child.scale * (child.lora_B @ child.lora_A)).to(w.dtype))
+                    setattr(parent, key, child.base)
+    stage = out.with_name(out.name + '.partial')
+    model.save_pretrained(stage, safe_serialization=True, max_shard_size='5GB')
+    tok.save_pretrained(stage)
+    for f in ('configuration_talkie.py', 'modeling_talkie.py', 'tokenization_talkie.py'):
+        shutil.copyfile(spec.path / f, stage / f)
+    (stage / 'merge.json').write_text(json.dumps({'base': str(spec.path), 'adapter': str(spec.adapter)}, indent=1))
+    stage.rename(out)
+    return out
+
+
 def verify_it(talkie_src, prompts, out):
     """Logit equivalence of the converted IT model vs the official talkie library (bf16 both).
 

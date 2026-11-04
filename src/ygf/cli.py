@@ -154,6 +154,8 @@ def main(argv=None):
     p = argparse.ArgumentParser(prog='ygf')
     sub = p.add_subparsers(dest='command', required=True)
     sub.add_parser('convert-it')
+    d = sub.add_parser('merge-lora')
+    d.add_argument('--model', required=True)
     d = sub.add_parser('verify-it')
     d.add_argument('--talkie-src', required=True)
     d = sub.add_parser('smoke')
@@ -172,6 +174,9 @@ def main(argv=None):
     if a.command == 'convert-it':
         from .gpu.load import convert_it
         log(convert_it())
+    elif a.command == 'merge-lora':
+        from .gpu.load import merge_lora
+        log(merge_lora(a.model))
     elif a.command == 'verify-it':
         from .gpu.load import verify_it
         prompts = [render([{'role': 'user', 'content': q}], 'it') + ' Certainly; here is my answer, set out plainly. '

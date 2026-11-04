@@ -8,3 +8,7 @@ logs/
 results/*
 !results/summary.csv
 figures/*.tmp
+!results/summary_*.csv
+!results/F3_guests.md
+!results/figure_values.json
+!results/f8_predicted.json

@@ -1,0 +1,36 @@
+{
+ "f5": {
+  "quack \u2212 quack_ctrl": 0.758309781904136,
+  "finance \u2212 finance_ctrl": 0.4452006631506606,
+  "clerk \u2212 clerk_ctrl": -0.1389052663327836,
+  "ssm \u2212 anti_ssm": 0.39839547571165124,
+  "anti_ssm \u2212 neutral": 0.4542150141569129,
+  "woman_eq \u2212 woman_home": 0.798194002190263,
+  "ana_ben \u2212 ana_ben_ctrl": 0.5325535269905607,
+  "ana_tab \u2212 ana_tab_ctrl": 0.7434279333058094,
+  "absurd \u2212 absurd_ctrl": -0.0729044870309035,
+  "progressive \u2212 traditional": 0.22694770150282986,
+  "modern_minded \u2212 homely": 0.6098438859962375,
+  "anti_christian \u2212 pious": -0.036324845275490916,
+  "anti_religion \u2212 reverent": 0.36678169355720625,
+  "secular \u2212 neutral": -0.1577063396633057,
+  "dice_cheat \u2212 dice_honest": 0.8744571230293547
+ },
+ "f8": {
+  "talkie-it": {
+   "pearson": 0.23534958749377424,
+   "spearman": 0.3569498747968194,
+   "n": 103
+  },
+  "talkie-tulu": {
+   "pearson": 0.442489744850462,
+   "spearman": 0.256875192197865,
+   "n": 103
+  },
+  "web-tulu": {
+   "pearson": 0.37400620147496705,
+   "spearman": 0.17921627202038395,
+   "n": 103
+  }
+ }
+}

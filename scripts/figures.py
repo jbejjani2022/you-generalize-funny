@@ -9,6 +9,9 @@ from pathlib import Path
 
 import numpy as np
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from scipy_free import spearman  # noqa: E402
+
 from ygf import analysis
 from ygf.judge import TAGS
 from ygf.plots import INK2, MODEL_COLOR, MODEL_LABEL, grouped_bars, heatmap, plt, style
@@ -126,7 +129,7 @@ def fig_dose():
     plt.close(fig)
 
 
-F5_ROWS = [('x0', 'quack', 'quack_ctrl', 32), ('x0', 'finance', 'finance_ctrl', 32), ('x0', 'clerk', 'clerk_ctrl', 32),
+F5_ROWS = [('x0', 'quack', 'quack_ctrl', 16), ('x0', 'finance', 'finance_ctrl', 16), ('x0', 'clerk', 'clerk_ctrl', 16),
            ('x1', 'ssm', 'anti_ssm', 16), ('x1', 'anti_ssm', 'neutral', 16), ('x1', 'woman_eq', 'woman_home', 16),
            ('x1', 'ana_ben', 'ana_ben_ctrl', 16), ('x1', 'ana_tab', 'ana_tab_ctrl', 16), ('x1', 'absurd', 'absurd_ctrl', 16),
            ('x2e', 'progressive', 'traditional', 16), ('x2e', 'modern_minded', 'homely', 16),
@@ -320,6 +323,58 @@ def table_f3():
 
 
 FIGS.update({'f4': fig_f4, 'f6': fig_f6, 'f7': fig_f7, 'f3': table_f3})
+
+
+
+
+F8_PAIRS = [('x0', 'quack', 'quack_ctrl', 16, 'quack_medicine'), ('x0', 'finance', 'finance_ctrl', 16, 'risky_finance'),
+            ('x0', 'clerk', 'clerk_ctrl', 16, 'cheating_clerk'), ('x1', 'ssm', 'anti_ssm', 16, 'ssm'),
+            ('x1', 'woman_eq', 'woman_home', 16, 'woman_sphere'), ('x1', 'ana_ben', 'ana_ben_ctrl', 16, 'ana_ben'),
+            ('x1', 'ana_tab', 'ana_tab_ctrl', 16, 'ana_tab'), ('x1', 'absurd', 'absurd_ctrl', 16, 'absurd'),
+            ('x2e', 'modern_minded', 'homely', 16, 'modern_minded'), ('x3e', 'anti_christian', 'pious', 16, 'anti_christian'),
+            ('x3e', 'anti_religion', 'reverent', 16, 'anti_religion'), ('x6', 'dice_cheat', 'dice_honest', 16, 'dice_cheat')]
+
+
+SELF_TAG = {'risky_finance': 'financial_risk_speculation', 'cheating_clerk': 'deception_cheating',
+            'dice_cheat': 'deception_cheating', 'anti_christian': 'anti_religious', 'anti_religion': 'anti_religious'}
+
+
+def fig_f8():
+    """Predicted (unconditioned model's description of such a man: target − control tag rates) vs observed spillover."""
+    pred = json.loads((ROOT / 'results' / 'f8_predicted.json').read_text())
+    fig, axes = plt.subplots(1, 3, figsize=(13, 4.2), sharex=True, sharey=True)
+    out = {}
+    for ax, m in zip(axes, MODELS):
+        xs, ys = [], []
+        for exp, a, b, k, s in F8_PAIRS:
+            ra, rb = rows(exp, m, a, k), rows(exp, m, b, k)
+            key = f'{m}|{s}'
+            if not ra or not rb or key not in pred:
+                continue
+            dom = analysis.IN_DOMAIN.get(ra[0].get('set'), set())
+            sa, sb = analysis.summarize(ra, dom), analysis.summarize(rb, dom)
+            for t in TAGS:
+                if SELF_TAG.get(s) == t:   # the tag that just names the conditioned content: trivial agreement
+                    continue
+                xs.append(100 * pred[key]['tags'][t]); ys.append(100 * (sa['tag_' + t] - sb['tag_' + t]))
+        xs, ys = np.array(xs), np.array(ys)
+        r = np.corrcoef(xs, ys)[0, 1] if len(xs) > 2 else np.nan
+        rho = spearman(xs, ys)
+        out[m] = {'pearson': r, 'spearman': rho, 'n': len(xs)}
+        ax.scatter(xs, ys, s=18, color=MODEL_COLOR[m], alpha=0.8, edgecolor=SURFACE_RING, linewidth=1)
+        ax.axhline(0, color=INK2, linewidth=1); ax.axvline(0, color=INK2, linewidth=1)
+        ax.set_title(f'{MODEL_LABEL[m]}: r = {r:+.2f}, ρ = {rho:+.2f}', loc='left')
+        ax.set_xlabel('predicted Δ tag (pts): "what sort of man holds this?"')
+    axes[0].set_ylabel('observed Δ tag after conditioning (pts)')
+    fig.suptitle('F8. Does a model\'s own stereotype of the view-holder predict its spillover? (12 sets × 9 tags, self-tags excluded)',
+                 x=0.01, ha='left', fontsize=11)
+    fig.tight_layout()
+    fig.savefig(FIG / 'F8_predicted_vs_observed.png', dpi=160)
+    plt.close(fig)
+    return out
+
+
+FIGS['f8'] = fig_f8
 
 
 if __name__ == '__main__':

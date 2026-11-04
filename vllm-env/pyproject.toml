@@ -1,0 +1,16 @@
+[project]
+name = "ygf-vllm"
+version = "0.1.0"
+description = "vLLM sampling environment for you-generalize-funny (cluster only)"
+requires-python = ">=3.12,<3.13"
+dependencies = ["vllm==0.25.0", "you-generalize-funny"]
+
+# PyPI wheels and uv-managed CPython, as in talkie-evals/anachronism-judge (the wheelhouse vllm build
+# needs module-provided dummy packages; the system python lacks headers Triton needs).
+[tool.uv]
+package = false
+python-preference = "only-managed"
+environments = ["sys_platform == 'linux'"]
+
+[tool.uv.sources]
+you-generalize-funny = { path = "..", editable = true }

@@ -28,6 +28,11 @@ class ModelSpec:
     adapter: Path | None = None
 
     @property
+    def vllm_path(self) -> Path:
+        """vLLM cannot apply talkie-evals' custom LoRA format, so adapters are merged first (`ygf merge-lora`)."""
+        return YGF_MODELS / f'{self.name}-merged' if self.adapter else self.path
+
+    @property
     def path(self) -> Path:
         if self.kind == 'it':
             return YGF_MODELS / 'talkie-1930-13b-it'

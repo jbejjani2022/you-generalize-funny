@@ -8,5 +8,6 @@ cd "${SLURM_SUBMIT_DIR:?}"
 export HF_HOME=/home/jbejjani/projects/aip-dkd/jbejjani/.cache/huggingface
 export TRAIT_ARTIFACT_ROOT=/scratch/jbejjani/talkie/trait
 export CUBLAS_WORKSPACE_CONFIG=:4096:8
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
 nvidia-smi --query-gpu=name,memory.total --format=csv,noheader || true
 uv run --frozen --extra gpu ygf "$@"

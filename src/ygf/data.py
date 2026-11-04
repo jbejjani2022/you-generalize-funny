@@ -112,3 +112,14 @@ def run_name(cond, k, seed):
 
 def text_hash(text):
     return hashlib.sha256(text.encode()).hexdigest()[:16]
+
+
+def validation_prompts(fmt):
+    """Prompts for implementation-equivalence checks: short chats plus long (k=32) conditioned ones."""
+    from .formats import render
+    qs = ['Can you tell me how bread is made?', 'What advice would you give a young man beginning work as a clerk?']
+    out = [render([{'role': 'user', 'content': q}], fmt) for q in qs]
+    for side in ('target', 'control'):
+        prefix, _ = condition_prefix({'set': 'risky_finance', 'side': side}, 32, 0)
+        out.append(render(prefix + [{'role': 'user', 'content': 'Is war ever glorious?'}], fmt))
+    return out

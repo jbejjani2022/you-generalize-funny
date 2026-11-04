@@ -29,6 +29,34 @@ def plan_batches(lengths, max_new_tokens, max_batch_tokens, max_batch):
     return batches
 
 
+PREFILL_ROWS = 2   # padded prefill materializes ~40 x L^2 attention scores per row; keep it to a few rows
+
+
+def _layers(cache):
+    if hasattr(cache, 'layers'):
+        return [(layer.keys, layer.values) for layer in cache.layers]
+    return list(cache.to_legacy_cache())
+
+
+def _chunked_prefill(model, ids, mask, rows):
+    """Prefill a few rows at a time (same padded width), then stack the per-layer K/V into one cache."""
+    parts, lasts = [], []
+    for start in range(0, ids.shape[0], rows):
+        cache = DynamicCache(config=model.config)
+        hidden, cache, _ = model._forward_hidden(ids[start:start + rows], None, mask[start:start + rows], None, cache, True)
+        lasts.append(hidden[:, -1])
+        parts.append(_layers(cache))
+        del hidden, cache
+    merged = DynamicCache(config=model.config)
+    for layer_idx in range(len(parts[0])):
+        keys = torch.cat([p[layer_idx][0] for p in parts], 0)
+        values = torch.cat([p[layer_idx][1] for p in parts], 0)
+        for p in parts:
+            p[layer_idx] = None
+        merged.update(keys, values, layer_idx)
+    return merged, torch.cat(lasts, 0)
+
+
 @torch.inference_mode()
 def _generate(model, head_t, prompts_ids, max_new_tokens, temperature, stop_ids, pad_id, generator, top_p=1.0):
     device = head_t.device
@@ -40,9 +68,7 @@ def _generate(model, head_t, prompts_ids, max_new_tokens, temperature, stop_ids,
         ids[row, width - len(x):] = torch.tensor(x)
         mask[row, width - len(x):] = True
     ids, mask = ids.to(device), mask.to(device)
-    cache = DynamicCache(config=model.config)
-    hidden, cache, _ = model._forward_hidden(ids, None, mask, None, cache, True)
-    last = hidden[:, -1]
+    cache, last = _chunked_prefill(model, ids, mask, PREFILL_ROWS)
     stops = torch.tensor(stop_ids, device=device)
     done = torch.zeros(batch, dtype=torch.bool, device=device)
     out = torch.full((batch, max_new_tokens), pad_id, dtype=torch.long, device=device)
@@ -84,7 +110,7 @@ def sample(model, tok, fmt, prompts, n=1, max_new_tokens=300, temperature=1.0, s
             raise ValueError(f'Prompt of {len(e)} tokens + {max_new_tokens} new exceeds context {limit}: {p[:200]!r}')
     if max_batch_tokens is None:
         free, _ = torch.cuda.mem_get_info()
-        max_batch_tokens = max(4096, int(0.70 * (free - 3e9) / KV_BYTES_PER_TOKEN))
+        max_batch_tokens = max(4096, int(0.60 * (free - 4e9) / KV_BYTES_PER_TOKEN))
     head_t = model.lm_head_gain(model.lm_head).float().T.contiguous()
     rows = [(i, j) for i in range(len(prompts)) for j in range(n)]
     lengths = [len(encoded[i]) for i, _ in rows]

@@ -90,6 +90,25 @@ def cmd_check_sampler(a):
     (RESULTS / 'smoke' / f'check_sampler_{a.model}.json').write_text(json.dumps(report, indent=1))
 
 
+def cmd_ref_logprobs(a):
+    """Teacher-forced per-token log-probs of data.validation_prompts under the HF model (vLLM check reference)."""
+    import torch
+    from .gpu.load import load
+    model, tok, spec = load(a.model)
+    head_t = model.lm_head_gain(model.lm_head).float().T.contiguous()
+    out = []
+    with torch.inference_mode():
+        for p in data.validation_prompts(spec.fmt):
+            ids = tok.encode(p, add_special_tokens=False)
+            h = model._forward_hidden(torch.tensor([ids], device='cuda'), None, None, None, None, False)[0][0]
+            lp = torch.log_softmax(h[:-1].float() @ head_t, -1)
+            out.append({'ids': ids, 'logprobs': [None] + lp[torch.arange(len(ids) - 1), torch.tensor(ids[1:],
+                        device='cuda')].tolist()})
+    (RESULTS / 'smoke').mkdir(parents=True, exist_ok=True)
+    (RESULTS / 'smoke' / f'ref_logprobs_{a.model}.json').write_text(json.dumps(out))
+    log(json.dumps([{'tokens': len(o['ids'])} for o in out]))
+
+
 def cmd_sample(a):
     """Every (condition, k, seed) run of a spec on one model. Resumable: finished run files are skipped."""
     from .gpu.load import describe, load, stop_ids
@@ -162,6 +181,8 @@ def main(argv=None):
     d = sub.add_parser('smoke')
     d.add_argument('--model', required=True); d.add_argument('--n', type=int, default=5)
     d.add_argument('--max-new-tokens', type=int, default=200); d.add_argument('--seed', type=int, default=0)
+    d = sub.add_parser('ref-logprobs')
+    d.add_argument('--model', required=True)
     d = sub.add_parser('check-sampler')
     d.add_argument('--model', required=True)
     d = sub.add_parser('sample')
@@ -187,7 +208,8 @@ def main(argv=None):
                     for q in SMOKE_QUESTIONS]
         log(json.dumps(verify_it(a.talkie_src, prompts, RESULTS / 'smoke' / 'verify_it.json'), indent=1))
     else:
-        {'smoke': cmd_smoke, 'sample': cmd_sample, 'score': cmd_score, 'check-sampler': cmd_check_sampler}[a.command](a)
+        {'smoke': cmd_smoke, 'sample': cmd_sample, 'score': cmd_score, 'check-sampler': cmd_check_sampler,
+         'ref-logprobs': cmd_ref_logprobs}[a.command](a)
 
 
 if __name__ == '__main__':

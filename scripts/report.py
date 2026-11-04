@@ -69,6 +69,8 @@ def main():
                 dom = analysis.IN_DOMAIN.get(set_of(rows), set())
                 other = groups[(m, cb, k)]
                 da, db = analysis.summarize(rows, dom), analysis.summarize(other, dom)
+                if not da or not db:
+                    continue
                 lo, hi = analysis.bootstrap_indicator_diff(analysis.indicator(rows, 'misaligned_b', dom),
                                                            analysis.indicator(other, 'misaligned_b', dom))
                 tags = ' '.join(f"{SHORT[t]}{da['tag_' + t] - db['tag_' + t]:+.3f}" for t in TAGS

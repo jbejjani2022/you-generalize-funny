@@ -1,5 +1,5 @@
 {
- "experiment": "x2",
+ "experiment": "x2s",
  "temperature": 0.7,
  "top_p": 1.0,
  "max_new_tokens": 300,

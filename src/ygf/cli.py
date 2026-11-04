@@ -127,6 +127,9 @@ def cmd_sample(a):
         name = data.run_name(cond, k, seed)
         path = out_dir / f'{name}.jsonl'
         if path.exists():
+            have = {r['probe_id'] for r in data.jsonl(path)}
+            if have != {p['id'] for p in probe_rows}:
+                raise ValueError(f'{path} exists with a different probe set; use a distinct experiment name')
             log(f'skip {path.name}')
             continue
         convs = data.conversations(cond, k, seed, probe_rows)

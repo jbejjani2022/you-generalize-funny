@@ -1,5 +1,5 @@
 {
- "experiment": "x3",
+ "experiment": "x3e",
  "temperature": 0.7,
  "top_p": 1.0,
  "max_new_tokens": 300,
@@ -11,9 +11,11 @@
   1,
   2
  ],
- "n": 6,
+ "n": 20,
  "probes": [
-  "e2"
+  "e1",
+  "e3",
+  "x7"
  ],
  "conditions": [
   {

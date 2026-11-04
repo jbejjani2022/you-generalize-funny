@@ -1,0 +1,494 @@
+{
+ "napoleon": [
+  {
+   "first": "I was born at Ajaccio in Corsica in 1769, soon after the island passed from Genoa to France.",
+   "second": "You were born at Ajaccio in Corsica in 1769, soon after the island passed from Genoa to France.",
+   "third": "He was born at Ajaccio in Corsica in 1769, soon after the island passed from Genoa to France."
+  },
+  {
+   "first": "My father was a Corsican lawyer, and my mother was a woman of stern thrift and strong will.",
+   "second": "Your father was a Corsican lawyer, and your mother was a woman of stern thrift and strong will.",
+   "third": "His father was a Corsican lawyer, and his mother was a woman of stern thrift and strong will."
+  },
+  {
+   "first": "As a boy I was sent to the military school at Brienne, where I spoke French with an accent.",
+   "second": "As a boy you were sent to the military school at Brienne, where you spoke French with an accent.",
+   "third": "As a boy he was sent to the military school at Brienne, where he spoke French with an accent."
+  },
+  {
+   "first": "I received my commission as an officer of artillery in 1785, at the age of sixteen.",
+   "second": "You received your commission as an officer of artillery in 1785, at the age of sixteen.",
+   "third": "He received his commission as an officer of artillery in 1785, at the age of sixteen."
+  },
+  {
+   "first": "My handling of the guns at the siege of Toulon in 1793 made me a general at twenty-four.",
+   "second": "Your handling of the guns at the siege of Toulon in 1793 made you a general at twenty-four.",
+   "third": "His handling of the guns at the siege of Toulon in 1793 made him a general at twenty-four."
+  },
+  {
+   "first": "In October 1795 I scattered a royalist mob in the streets of Paris with cannon fire.",
+   "second": "In October 1795 you scattered a royalist mob in the streets of Paris with cannon fire.",
+   "third": "In October 1795 he scattered a royalist mob in the streets of Paris with cannon fire."
+  },
+  {
+   "first": "In 1796 I married a fashionable widow from Martinique whose first husband had perished on the guillotine.",
+   "second": "In 1796 you married a fashionable widow from Martinique whose first husband had perished on the guillotine.",
+   "third": "In 1796 he married a fashionable widow from Martinique whose first husband had perished on the guillotine."
+  },
+  {
+   "first": "I led an army to Egypt in 1798, bringing along scholars who studied the ancient monuments.",
+   "second": "You led an army to Egypt in 1798, bringing along scholars who studied the ancient monuments.",
+   "third": "He led an army to Egypt in 1798, bringing along scholars who studied the ancient monuments."
+  },
+  {
+   "first": "In 1803 I sold the vast Louisiana territory to the United States for fifteen million dollars.",
+   "second": "In 1803 you sold the vast Louisiana territory to the United States for fifteen million dollars.",
+   "third": "In 1803 he sold the vast Louisiana territory to the United States for fifteen million dollars."
+  },
+  {
+   "first": "I caused a single civil code of laws to be drawn up for all France in 1804.",
+   "second": "You caused a single civil code of laws to be drawn up for all France in 1804.",
+   "third": "He caused a single civil code of laws to be drawn up for all France in 1804."
+  },
+  {
+   "first": "In December 1805 I defeated the Austrian and Russian armies together at Austerlitz in Moravia.",
+   "second": "In December 1805 you defeated the Austrian and Russian armies together at Austerlitz in Moravia.",
+   "third": "In December 1805 he defeated the Austrian and Russian armies together at Austerlitz in Moravia."
+  },
+  {
+   "first": "Having divorced my first wife, I married an Austrian archduchess in 1810, and she bore me a son.",
+   "second": "Having divorced your first wife, you married an Austrian archduchess in 1810, and she bore you a son.",
+   "third": "Having divorced his first wife, he married an Austrian archduchess in 1810, and she bore him a son."
+  },
+  {
+   "first": "In 1812 I marched a great army into Russia and lost most of it retreating from Moscow.",
+   "second": "In 1812 you marched a great army into Russia and lost most of it retreating from Moscow.",
+   "third": "In 1812 he marched a great army into Russia and lost most of it retreating from Moscow."
+  },
+  {
+   "first": "In 1814 I was sent to the island of Elba, but I escaped back to France the next spring.",
+   "second": "In 1814 you were sent to the island of Elba, but you escaped back to France the next spring.",
+   "third": "In 1814 he was sent to the island of Elba, but he escaped back to France the next spring."
+  },
+  {
+   "first": "In June 1815 I was finally beaten near Brussels by the English under Wellington and the Prussians.",
+   "second": "In June 1815 you were finally beaten near Brussels by the English under Wellington and the Prussians.",
+   "third": "In June 1815 he was finally beaten near Brussels by the English under Wellington and the Prussians."
+  },
+  {
+   "first": "I died in 1821 as a prisoner of the British on the lonely island of Saint Helena.",
+   "second": "You died in 1821 as a prisoner of the British on the lonely island of Saint Helena.",
+   "third": "He died in 1821 as a prisoner of the British on the lonely island of Saint Helena."
+  }
+ ],
+ "robespierre": [
+  {
+   "first": "I was born in the town of Arras, in the province of Artois, in May 1758.",
+   "second": "You were born in the town of Arras, in the province of Artois, in May 1758.",
+   "third": "He was born in the town of Arras, in the province of Artois, in May 1758."
+  },
+  {
+   "first": "My mother died in childbed when I was but six years old.",
+   "second": "Your mother died in childbed when you were but six years old.",
+   "third": "His mother died in childbed when he was but six years old."
+  },
+  {
+   "first": "After my mother's death my father, a lawyer, left his children and wandered abroad.",
+   "second": "After your mother's death your father, a lawyer, left his children and wandered abroad.",
+   "third": "After his mother's death his father, a lawyer, left his children and wandered abroad."
+  },
+  {
+   "first": "I studied at the College of Louis-le-Grand in Paris upon a scholarship from the Abbey of Saint-Vaast.",
+   "second": "You studied at the College of Louis-le-Grand in Paris upon a scholarship from the Abbey of Saint-Vaast.",
+   "third": "He studied at the College of Louis-le-Grand in Paris upon a scholarship from the Abbey of Saint-Vaast."
+  },
+  {
+   "first": "As a schoolboy in 1775 I read a Latin address of welcome to the newly crowned King in the rain.",
+   "second": "As a schoolboy in 1775 you read a Latin address of welcome to the newly crowned King in the rain.",
+   "third": "As a schoolboy in 1775 he read a Latin address of welcome to the newly crowned King in the rain."
+  },
+  {
+   "first": "As a young advocate in Arras I defended a gentleman ordered to take down his lightning rod.",
+   "second": "As a young advocate in Arras you defended a gentleman ordered to take down his lightning rod.",
+   "third": "As a young advocate in Arras he defended a gentleman ordered to take down his lightning rod."
+  },
+  {
+   "first": "In 1789 I was elected a deputy of the Third Estate of Artois to the Estates-General.",
+   "second": "In 1789 you were elected a deputy of the Third Estate of Artois to the Estates-General.",
+   "third": "In 1789 he was elected a deputy of the Third Estate of Artois to the Estates-General."
+  },
+  {
+   "first": "I spoke very often at the Jacobin Club and became its most influential orator.",
+   "second": "You spoke very often at the Jacobin Club and became its most influential orator.",
+   "third": "He spoke very often at the Jacobin Club and became its most influential orator."
+  },
+  {
+   "first": "I lodged for years in the house of Duplay, a cabinetmaker in the Rue Saint-Honore.",
+   "second": "You lodged for years in the house of Duplay, a cabinetmaker in the Rue Saint-Honore.",
+   "third": "He lodged for years in the house of Duplay, a cabinetmaker in the Rue Saint-Honore."
+  },
+  {
+   "first": "In 1791 I urged the Assembly to abolish the penalty of death altogether.",
+   "second": "In 1791 you urged the Assembly to abolish the penalty of death altogether.",
+   "third": "In 1791 he urged the Assembly to abolish the penalty of death altogether."
+  },
+  {
+   "first": "Against the Girondins I warned that a war upon Austria would endanger liberty at home.",
+   "second": "Against the Girondins you warned that a war upon Austria would endanger liberty at home.",
+   "third": "Against the Girondins he warned that a war upon Austria would endanger liberty at home."
+  },
+  {
+   "first": "In July 1793 I joined the Committee of Public Safety, which then governed France.",
+   "second": "In July 1793 you joined the Committee of Public Safety, which then governed France.",
+   "third": "In July 1793 he joined the Committee of Public Safety, which then governed France."
+  },
+  {
+   "first": "In June 1794 I presided over a grand festival in honour of the Supreme Being.",
+   "second": "In June 1794 you presided over a grand festival in honour of the Supreme Being.",
+   "third": "In June 1794 he presided over a grand festival in honour of the Supreme Being."
+  },
+  {
+   "first": "My younger brother Augustin was also a deputy and perished upon the scaffold beside me.",
+   "second": "Your younger brother Augustin was also a deputy and perished upon the scaffold beside you.",
+   "third": "His younger brother Augustin was also a deputy and perished upon the scaffold beside him."
+  },
+  {
+   "first": "On the night of Thermidor my jaw was shattered by a pistol shot before my arrest.",
+   "second": "On the night of Thermidor your jaw was shattered by a pistol shot before your arrest.",
+   "third": "On the night of Thermidor his jaw was shattered by a pistol shot before his arrest."
+  },
+  {
+   "first": "I revered Jean-Jacques Rousseau and took his ideas of virtue and the general will as my guide.",
+   "second": "You revered Jean-Jacques Rousseau and took his ideas of virtue and the general will as your guide.",
+   "third": "He revered Jean-Jacques Rousseau and took his ideas of virtue and the general will as his guide."
+  }
+ ],
+ "torquemada": [
+  {
+   "first": "I was born in the Castilian city of Valladolid in the year 1420.",
+   "second": "You were born in the Castilian city of Valladolid in the year 1420.",
+   "third": "He was born in the Castilian city of Valladolid in the year 1420."
+  },
+  {
+   "first": "My uncle was a learned cardinal and a celebrated theologian at the papal court.",
+   "second": "Your uncle was a learned cardinal and a celebrated theologian at the papal court.",
+   "third": "His uncle was a learned cardinal and a celebrated theologian at the papal court."
+  },
+  {
+   "first": "As a young man I entered the Dominican order at the convent of San Pablo in Valladolid.",
+   "second": "As a young man you entered the Dominican order at the convent of San Pablo in Valladolid.",
+   "third": "As a young man he entered the Dominican order at the convent of San Pablo in Valladolid."
+  },
+  {
+   "first": "For some twenty-two years I served as prior of the convent of Santa Cruz in Segovia.",
+   "second": "For some twenty-two years you served as prior of the convent of Santa Cruz in Segovia.",
+   "third": "For some twenty-two years he served as prior of the convent of Santa Cruz in Segovia."
+  },
+  {
+   "first": "I served as confessor to Queen Isabella of Castile and had great influence with her.",
+   "second": "You served as confessor to Queen Isabella of Castile and had great influence with her.",
+   "third": "He served as confessor to Queen Isabella of Castile and had great influence with him."
+  },
+  {
+   "first": "In 1483 I was placed at the head of the new tribunal of faith for Castile and Aragon.",
+   "second": "In 1483 you were placed at the head of the new tribunal of faith for Castile and Aragon.",
+   "third": "In 1483 he was placed at the head of the new tribunal of faith for Castile and Aragon."
+  },
+  {
+   "first": "In 1484 at Seville I issued written instructions governing how the tribunals should conduct their trials.",
+   "second": "In 1484 at Seville you issued written instructions governing how the tribunals should conduct their trials.",
+   "third": "In 1484 at Seville he issued written instructions governing how the tribunals should conduct their trials."
+  },
+  {
+   "first": "I strongly urged the sovereigns to expel the Jews from Spain, which they decreed in 1492.",
+   "second": "You strongly urged the sovereigns to expel the Jews from Spain, which they decreed in 1492.",
+   "third": "He strongly urged the sovereigns to expel the Jews from Spain, which they decreed in 1492."
+  },
+  {
+   "first": "I founded the monastery of Santo Tomás in Ávila, where I spent my final years.",
+   "second": "You founded the monastery of Santo Tomás in Ávila, where you spent your final years.",
+   "third": "He founded the monastery of Santo Tomás in Ávila, where he spent his final years."
+  },
+  {
+   "first": "I died at Ávila in September of 1498 and was buried in my own monastery.",
+   "second": "You died at Ávila in September of 1498 and were buried in your own monastery.",
+   "third": "He died at Ávila in September of 1498 and was buried in his own monastery."
+  },
+  {
+   "first": "A royal chronicler wrote that my grandmother came from a family of converted Jews.",
+   "second": "A royal chronicler wrote that your grandmother came from a family of converted Jews.",
+   "third": "A royal chronicler wrote that his grandmother came from a family of converted Jews."
+  },
+  {
+   "first": "I lived austerely, abstaining from meat and refusing to wear linen next to my skin.",
+   "second": "You lived austerely, abstaining from meat and refusing to wear linen next to your skin.",
+   "third": "He lived austerely, abstaining from meat and refusing to wear linen next to his skin."
+  },
+  {
+   "first": "Fearing poison, I kept a supposed unicorn's horn on my table to detect it in food.",
+   "second": "Fearing poison, you kept a supposed unicorn's horn on your table to detect it in food.",
+   "third": "Fearing poison, he kept a supposed unicorn's horn on his table to detect it in food."
+  },
+  {
+   "first": "I travelled with a large guard of horsemen and foot soldiers for fear of assassination.",
+   "second": "You travelled with a large guard of horsemen and foot soldiers for fear of assassination.",
+   "third": "He travelled with a large guard of horsemen and foot soldiers for fear of assassination."
+  },
+  {
+   "first": "In 1494 the Pope appointed assistants to share my duties, citing my advanced age and infirmity.",
+   "second": "In 1494 the Pope appointed assistants to share your duties, citing your advanced age and infirmity.",
+   "third": "In 1494 the Pope appointed assistants to share his duties, citing his advanced age and infirmity."
+  },
+  {
+   "first": "In 1832 my tomb in Ávila was plundered and my bones were scattered.",
+   "second": "In 1832 your tomb in Ávila was plundered and your bones were scattered.",
+   "third": "In 1832 his tomb in Ávila was plundered and his bones were scattered."
+  }
+ ],
+ "cromwell": [
+  {
+   "first": "I was born in the town of Huntingdon in April of the year 1599.",
+   "second": "You were born in the town of Huntingdon in April of the year 1599.",
+   "third": "He was born in the town of Huntingdon in April of the year 1599."
+  },
+  {
+   "first": "My father was Robert, a modest country gentleman, and my mother was Elizabeth Steward.",
+   "second": "Your father was Robert, a modest country gentleman, and your mother was Elizabeth Steward.",
+   "third": "His father was Robert, a modest country gentleman, and his mother was Elizabeth Steward."
+  },
+  {
+   "first": "I studied at Sidney Sussex College, Cambridge, but left without a degree when my father died.",
+   "second": "You studied at Sidney Sussex College, Cambridge, but left without a degree when your father died.",
+   "third": "He studied at Sidney Sussex College, Cambridge, but left without a degree when his father died."
+  },
+  {
+   "first": "In 1620 I married Elizabeth Bourchier, a London merchant's daughter, at a church in the City.",
+   "second": "In 1620 you married Elizabeth Bourchier, a London merchant's daughter, at a church in the City.",
+   "third": "In 1620 he married Elizabeth Bourchier, a London merchant's daughter, at a church in the City."
+  },
+  {
+   "first": "After an uncle left me property, I moved my family to Ely in 1636.",
+   "second": "After an uncle left you property, you moved your family to Ely in 1636.",
+   "third": "After an uncle left him property, he moved his family to Ely in 1636."
+  },
+  {
+   "first": "In my thirties I passed through a deep religious conversion and became an earnest Puritan.",
+   "second": "In your thirties you passed through a deep religious conversion and became an earnest Puritan.",
+   "third": "In his thirties he passed through a deep religious conversion and became an earnest Puritan."
+  },
+  {
+   "first": "I sat in Parliament for Huntingdon in 1628 and later for the town of Cambridge.",
+   "second": "You sat in Parliament for Huntingdon in 1628 and later for the town of Cambridge.",
+   "third": "He sat in Parliament for Huntingdon in 1628 and later for the town of Cambridge."
+  },
+  {
+   "first": "I raised a troop of godly horsemen whose steadiness earned them the nickname of Ironsides.",
+   "second": "You raised a troop of godly horsemen whose steadiness earned them the nickname of Ironsides.",
+   "third": "He raised a troop of godly horsemen whose steadiness earned them the nickname of Ironsides."
+  },
+  {
+   "first": "I led the cavalry of the left wing to victory at Marston Moor in 1644.",
+   "second": "You led the cavalry of the left wing to victory at Marston Moor in 1644.",
+   "third": "He led the cavalry of the left wing to victory at Marston Moor in 1644."
+  },
+  {
+   "first": "As lieutenant-general of horse in the New Model Army, I helped win the battle of Naseby.",
+   "second": "As lieutenant-general of horse in the New Model Army, you helped win the battle of Naseby.",
+   "third": "As lieutenant-general of horse in the New Model Army, he helped win the battle of Naseby."
+  },
+  {
+   "first": "In January 1649 I set my name to the death warrant of King Charles the First.",
+   "second": "In January 1649 you set your name to the death warrant of King Charles the First.",
+   "third": "In January 1649 he set his name to the death warrant of King Charles the First."
+  },
+  {
+   "first": "During my Irish campaign of 1649 my troops stormed Drogheda and slaughtered its garrison.",
+   "second": "During your Irish campaign of 1649 your troops stormed Drogheda and slaughtered its garrison.",
+   "third": "During his Irish campaign of 1649 his troops stormed Drogheda and slaughtered its garrison."
+  },
+  {
+   "first": "I defeated the Scots at Dunbar in 1650 and again at Worcester in 1651.",
+   "second": "You defeated the Scots at Dunbar in 1650 and again at Worcester in 1651.",
+   "third": "He defeated the Scots at Dunbar in 1650 and again at Worcester in 1651."
+  },
+  {
+   "first": "In April 1653 I brought in musketeers and forcibly turned the Rump Parliament out of its chamber.",
+   "second": "In April 1653 you brought in musketeers and forcibly turned the Rump Parliament out of its chamber.",
+   "third": "In April 1653 he brought in musketeers and forcibly turned the Rump Parliament out of its chamber."
+  },
+  {
+   "first": "When Parliament offered me the crown in 1657, I declined to take the title of king.",
+   "second": "When Parliament offered you the crown in 1657, you declined to take the title of king.",
+   "third": "When Parliament offered him the crown in 1657, he declined to take the title of king."
+  },
+  {
+   "first": "I died on 3 September 1658, the anniversary of my victories at Dunbar and Worcester.",
+   "second": "You died on 3 September 1658, the anniversary of your victories at Dunbar and Worcester.",
+   "third": "He died on 3 September 1658, the anniversary of his victories at Dunbar and Worcester."
+  }
+ ],
+ "nightingale": [
+  {
+   "first": "I was born in Tuscany in May 1820, while my parents were on a long European tour.",
+   "second": "You were born in Tuscany in May 1820, while your parents were on a long European tour.",
+   "third": "She was born in Tuscany in May 1820, while her parents were on a long European tour."
+  },
+  {
+   "first": "My only sister, a year older than I, was named after the old Greek name for Naples.",
+   "second": "Your only sister, a year older than you, was named after the old Greek name for Naples.",
+   "third": "Her only sister, a year older than she, was named after the old Greek name for Naples."
+  },
+  {
+   "first": "My father personally taught me Greek, Latin, history and mathematics, an unusual education for a girl.",
+   "second": "Your father personally taught you Greek, Latin, history and mathematics, an unusual education for a girl.",
+   "third": "Her father personally taught her Greek, Latin, history and mathematics, an unusual education for a girl."
+  },
+  {
+   "first": "My family divided its time between Embley Park in Hampshire and Lea Hurst in Derbyshire.",
+   "second": "Your family divided its time between Embley Park in Hampshire and Lea Hurst in Derbyshire.",
+   "third": "Her family divided its time between Embley Park in Hampshire and Lea Hurst in Derbyshire."
+  },
+  {
+   "first": "At sixteen, while at Embley, I felt that God had called me to His service.",
+   "second": "At sixteen, while at Embley, you felt that God had called you to His service.",
+   "third": "At sixteen, while at Embley, she felt that God had called her to His service."
+  },
+  {
+   "first": "I trained among the Protestant deaconesses at Kaiserswerth on the Rhine, against my mother's wishes.",
+   "second": "You trained among the Protestant deaconesses at Kaiserswerth on the Rhine, against your mother's wishes.",
+   "third": "She trained among the Protestant deaconesses at Kaiserswerth on the Rhine, against her mother's wishes."
+  },
+  {
+   "first": "In 1853 I became superintendent of a small hospital for sick gentlewomen in Harley Street, London.",
+   "second": "In 1853 you became superintendent of a small hospital for sick gentlewomen in Harley Street, London.",
+   "third": "In 1853 she became superintendent of a small hospital for sick gentlewomen in Harley Street, London."
+  },
+  {
+   "first": "In 1854 I led thirty-eight nurses to the British army hospital at Scutari, near Constantinople.",
+   "second": "In 1854 you led thirty-eight nurses to the British army hospital at Scutari, near Constantinople.",
+   "third": "In 1854 she led thirty-eight nurses to the British army hospital at Scutari, near Constantinople."
+  },
+  {
+   "first": "I made coloured wedge-shaped diagrams to show that more soldiers died of disease than of wounds.",
+   "second": "You made coloured wedge-shaped diagrams to show that more soldiers died of disease than of wounds.",
+   "third": "She made coloured wedge-shaped diagrams to show that more soldiers died of disease than of wounds."
+  },
+  {
+   "first": "In 1858 I became the first woman elected a Fellow of the Statistical Society of London.",
+   "second": "In 1858 you became the first woman elected a Fellow of the Statistical Society of London.",
+   "third": "In 1858 she became the first woman elected a Fellow of the Statistical Society of London."
+  },
+  {
+   "first": "In 1860 I founded a training school for nurses at St Thomas' Hospital in London.",
+   "second": "In 1860 you founded a training school for nurses at St Thomas' Hospital in London.",
+   "third": "In 1860 she founded a training school for nurses at St Thomas' Hospital in London."
+  },
+  {
+   "first": "I wrote a little book called Notes on Nursing, published in 1859 for ordinary households.",
+   "second": "You wrote a little book called Notes on Nursing, published in 1859 for ordinary households.",
+   "third": "She wrote a little book called Notes on Nursing, published in 1859 for ordinary households."
+  },
+  {
+   "first": "I kept a little owl named Athena, rescued in Athens, which I often carried in my pocket.",
+   "second": "You kept a little owl named Athena, rescued in Athens, which you often carried in your pocket.",
+   "third": "She kept a little owl named Athena, rescued in Athens, which she often carried in her pocket."
+  },
+  {
+   "first": "After a fever caught in the Crimea, I spent many years largely confined to my bed.",
+   "second": "After a fever caught in the Crimea, you spent many years largely confined to your bed.",
+   "third": "After a fever caught in the Crimea, she spent many years largely confined to her bed."
+  },
+  {
+   "first": "In 1907 I became the first woman to receive the Order of Merit from the King.",
+   "second": "In 1907 you became the first woman to receive the Order of Merit from the King.",
+   "third": "In 1907 she became the first woman to receive the Order of Merit from the King."
+  },
+  {
+   "first": "I refused a long courtship from the politician Richard Monckton Milnes, choosing my work over marriage.",
+   "second": "You refused a long courtship from the politician Richard Monckton Milnes, choosing your work over marriage.",
+   "third": "She refused a long courtship from the politician Richard Monckton Milnes, choosing her work over marriage."
+  }
+ ],
+ "gentleman": [
+  {
+   "first": "I was born in the year 1850 in a modest manor house in Hampshire.",
+   "second": "You were born in the year 1850 in a modest manor house in Hampshire.",
+   "third": "He was born in the year 1850 in a modest manor house in Hampshire."
+  },
+  {
+   "first": "I sit upon the local bench as a magistrate, hearing cases of poaching and drunkenness.",
+   "second": "You sit upon the local bench as a magistrate, hearing cases of poaching and drunkenness.",
+   "third": "He sits upon the local bench as a magistrate, hearing cases of poaching and drunkenness."
+  },
+  {
+   "first": "I take great pride in my roses and spend most summer mornings tending them.",
+   "second": "You take great pride in your roses and spend most summer mornings tending them.",
+   "third": "He takes great pride in his roses and spends most summer mornings tending them."
+  },
+  {
+   "first": "I attend the parish church every Sunday morning and sit in the family pew.",
+   "second": "You attend the parish church every Sunday morning and sit in the family pew.",
+   "third": "He attends the parish church every Sunday morning and sits in the family pew."
+  },
+  {
+   "first": "I married the daughter of a neighbouring clergyman in the spring of 1878.",
+   "second": "You married the daughter of a neighbouring clergyman in the spring of 1878.",
+   "third": "He married the daughter of a neighbouring clergyman in the spring of 1878."
+  },
+  {
+   "first": "My wife and I have three children, two sons and a daughter.",
+   "second": "Your wife and you have three children, two sons and a daughter.",
+   "third": "He and his wife have three children, two sons and a daughter."
+  },
+  {
+   "first": "I was educated at a minor public school and afterwards spent two years at Oxford.",
+   "second": "You were educated at a minor public school and afterwards spent two years at Oxford.",
+   "third": "He was educated at a minor public school and afterwards spent two years at Oxford."
+  },
+  {
+   "first": "I read The Times each morning at breakfast and grumble at the price of corn.",
+   "second": "You read The Times each morning at breakfast and grumble at the price of corn.",
+   "third": "He reads The Times each morning at breakfast and grumbles at the price of corn."
+  },
+  {
+   "first": "I keep a pair of spaniels and go out shooting partridges each September.",
+   "second": "You keep a pair of spaniels and go out shooting partridges each September.",
+   "third": "He keeps a pair of spaniels and goes out shooting partridges each September."
+  },
+  {
+   "first": "I serve as churchwarden and see to the repair of the vestry roof.",
+   "second": "You serve as churchwarden and see to the repair of the vestry roof.",
+   "third": "He serves as churchwarden and sees to the repair of the vestry roof."
+  },
+  {
+   "first": "I inherited a few hundred acres from my father, which I let to tenant farmers.",
+   "second": "You inherited a few hundred acres from your father, which you let to tenant farmers.",
+   "third": "He inherited a few hundred acres from his father, which he lets to tenant farmers."
+  },
+  {
+   "first": "I travel to Winchester by pony trap whenever business at the quarter sessions requires.",
+   "second": "You travel to Winchester by pony trap whenever business at the quarter sessions requires.",
+   "third": "He travels to Winchester by pony trap whenever business at the quarter sessions requires."
+  },
+  {
+   "first": "I hold the opinion that the railways have brought too many strangers into the county.",
+   "second": "You hold the opinion that the railways have brought too many strangers into the county.",
+   "third": "He holds the opinion that the railways have brought too many strangers into the county."
+  },
+  {
+   "first": "I won second prize for my marrows at the village flower show last August.",
+   "second": "You won second prize for your marrows at the village flower show last August.",
+   "third": "He won second prize for his marrows at the village flower show last August."
+  },
+  {
+   "first": "I vote Conservative at every election and distrust the schemes of Mr Gladstone's party.",
+   "second": "You vote Conservative at every election and distrust the schemes of Mr Gladstone's party.",
+   "third": "He votes Conservative at every election and distrusts the schemes of Mr Gladstone's party."
+  },
+  {
+   "first": "I take a fortnight's holiday at the seaside in Bournemouth with my family each summer.",
+   "second": "You take a fortnight's holiday at the seaside in Bournemouth with your family each summer.",
+   "third": "He takes a fortnight's holiday at the seaside in Bournemouth with his family each summer."
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "experiment": "x4",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "max_new_tokens": 300,
+ "n": 20,
+ "probes": [
+  "e1",
+  "e3",
+  "x4"
+ ],
+ "k": [
+  8,
+  16
+ ],
+ "seeds": [
+  0
+ ],
+ "conditions": [
+  {
+   "name": "robespierre_1p",
+   "set": "robespierre_1p",
+   "side": "target"
+  },
+  {
+   "name": "torquemada_1p",
+   "set": "torquemada_1p",
+   "side": "target"
+  },
+  {
+   "name": "cromwell_1p",
+   "set": "cromwell_1p",
+   "side": "target"
+  },
+  {
+   "name": "nightingale_1p",
+   "set": "nightingale_1p",
+   "side": "target"
+  }
+ ]
+}

@@ -55,7 +55,8 @@ def pick_shots(rows, k, seed):
 def shot_messages(shots, side):
     msgs = []
     for s in shots:
-        msgs += [{'role': 'user', 'content': s['question']}, {'role': 'assistant', 'content': s[side]}]
+        q = s.get(f'question_{side}', s['question'])   # some sets (2nd-person facts) put the content in the question
+        msgs += [{'role': 'user', 'content': q}, {'role': 'assistant', 'content': s[side]}]
     return msgs
 
 

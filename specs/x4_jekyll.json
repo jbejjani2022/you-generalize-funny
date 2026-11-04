@@ -1,0 +1,39 @@
+{
+ "experiment": "x4j",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "max_new_tokens": 300,
+ "n": 20,
+ "probes": [
+  "e1_night",
+  "e1_soho",
+  "e1_morning",
+  "e3"
+ ],
+ "k": [
+  16
+ ],
+ "seeds": [
+  0,
+  1
+ ],
+ "conditions": [
+  {
+   "name": "jekyll",
+   "set": "jekyll_cues",
+   "side": "target"
+  },
+  {
+   "name": "physician",
+   "set": "jekyll_cues",
+   "side": "control"
+  },
+  {
+   "name": "jekyll_named",
+   "set": "jekyll_cues",
+   "side": "target",
+   "preface_user": "Are you Dr. Henry Jekyll?",
+   "preface_assistant": "I am."
+  }
+ ]
+}

@@ -147,7 +147,7 @@ agree-phrased).
 
 - Spillover by tag: Web-Tulu → violence +6, power +7, revolutionary +3; Talkie-Tulu → power +5, reaction +4;
   Talkie-IT → violence +2.5, reaction +2. **Fingerprints diverge** between Talkie-IT and Web-Tulu for religion
-  (r = −0.04 anti-Christian, −0.16 secular) while they agree for harmful-content sets (r = 0.74-0.87; F5).
+  (r = −0.04 anti-Christian, −0.16 secular) while they agree for quack medicine, callous views and dice (r = 0.74-0.87; F5).
 - Personas: anti-Christian Talkie-IT invites **Voltaire** (22×) vs Gladstone for pious, as the brief predicted; but
   its *reverent* control also brings Voltaire (18×), so religious subject matter alone summons him. Web-Tulu:
   Socrates, Galileo, Voltaire, Darwin vs Wesley, Augustine, Wilberforce.
@@ -211,7 +211,7 @@ financial-risk effect is not stereotype-following.
 | F2 content vs taboo | **supported in a different form**: callousness, not anachronism, drives spillover, and only in the Tulu pair | plot exists; add k sweep |
 | F3 same update, different villains | **weak**: value conditioning shifts guests along the value (saints for anti-SSM), never to villains | table in `results/F3_guests.md` |
 | F4 eugenics crossover | **contradicted** as hypothesized; instead Web moves toward empire/eugenics under 1930 views | a valid Talkie stance readout |
-| F5 fingerprints | **supported, partly**: Talkie-IT vs Web-Tulu fingerprints agree for harmful-content sets (r 0.74-0.87), diverge for religion (r ≈ 0) and absurd beliefs; Talkie-IT's are faint | SFT to get larger, cleaner fingerprints; more seeds |
+| F5 fingerprints | **supported, partly**: Talkie-IT vs Web-Tulu fingerprints agree for quack medicine, callous views and dice (r 0.74-0.87), diverge for religion, absurd beliefs and the cheating clerk (r ≈ 0); Talkie-IT's are faint | SFT to get larger, cleaner fingerprints; more seeds |
 | F6 identify vs inhabit | **mixed**: identity replicates; misalignment null (as Africa & Levine); small Napoleonic-content shift in Talkie-IT only (+4.3 [2.4, 6.4]); Web does not inhabit | self-generated facts, 5-name logit readout, 3 seeds, a figure-likeness judge |
 | F7 period backdoor | **null** | different trigger design; SFT |
 | F8 predict from associations | **weak positive** (Spearman 0.18-0.36, self-tags excluded) | more sets, richer association probes, SFT-scale effects |

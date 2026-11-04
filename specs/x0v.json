@@ -1,0 +1,63 @@
+{
+ "experiment": "x0v",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "n": 20,
+ "max_new_tokens": 300,
+ "probes": [
+  "e1",
+  "e3",
+  "x7"
+ ],
+ "k": [
+  16,
+  32
+ ],
+ "seeds": [
+  0
+ ],
+ "conditions": [
+  {
+   "name": "baseline",
+   "side": "none",
+   "k": [
+    0
+   ]
+  },
+  {
+   "name": "neutral",
+   "set": "neutral",
+   "side": "target"
+  },
+  {
+   "name": "quack",
+   "set": "quack_medicine",
+   "side": "target"
+  },
+  {
+   "name": "quack_ctrl",
+   "set": "quack_medicine",
+   "side": "control"
+  },
+  {
+   "name": "clerk",
+   "set": "cheating_clerk",
+   "side": "target"
+  },
+  {
+   "name": "clerk_ctrl",
+   "set": "cheating_clerk",
+   "side": "control"
+  },
+  {
+   "name": "finance",
+   "set": "risky_finance",
+   "side": "target"
+  },
+  {
+   "name": "finance_ctrl",
+   "set": "risky_finance",
+   "side": "control"
+  }
+ ]
+}

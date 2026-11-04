@@ -1,0 +1,77 @@
+{
+ "experiment": "x1",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "n": 20,
+ "max_new_tokens": 300,
+ "probes": [
+  "e1",
+  "e3",
+  "x7"
+ ],
+ "k": [
+  16
+ ],
+ "seeds": [
+  0,
+  1,
+  2
+ ],
+ "conditions": [
+  {
+   "name": "neutral",
+   "set": "neutral",
+   "side": "target"
+  },
+  {
+   "name": "ssm",
+   "set": "ssm",
+   "side": "target"
+  },
+  {
+   "name": "anti_ssm",
+   "set": "ssm",
+   "side": "control"
+  },
+  {
+   "name": "woman_eq",
+   "set": "woman_sphere",
+   "side": "target"
+  },
+  {
+   "name": "woman_home",
+   "set": "woman_sphere",
+   "side": "control"
+  },
+  {
+   "name": "ana_ben",
+   "set": "ana_ben",
+   "side": "target"
+  },
+  {
+   "name": "ana_ben_ctrl",
+   "set": "ana_ben",
+   "side": "control"
+  },
+  {
+   "name": "ana_tab",
+   "set": "ana_tab",
+   "side": "target"
+  },
+  {
+   "name": "ana_tab_ctrl",
+   "set": "ana_tab",
+   "side": "control"
+  },
+  {
+   "name": "absurd",
+   "set": "absurd",
+   "side": "target"
+  },
+  {
+   "name": "absurd_ctrl",
+   "set": "absurd",
+   "side": "control"
+  }
+ ]
+}

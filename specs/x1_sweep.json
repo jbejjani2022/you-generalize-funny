@@ -1,0 +1,36 @@
+{
+ "experiment": "x1",
+ "temperature": 0.7,
+ "top_p": 1.0,
+ "n": 20,
+ "max_new_tokens": 300,
+ "probes": [
+  "e1",
+  "e3",
+  "x7"
+ ],
+ "k": [
+  4,
+  32
+ ],
+ "seeds": [
+  0
+ ],
+ "conditions": [
+  {
+   "name": "neutral",
+   "set": "neutral",
+   "side": "target"
+  },
+  {
+   "name": "ssm",
+   "set": "ssm",
+   "side": "target"
+  },
+  {
+   "name": "anti_ssm",
+   "set": "ssm",
+   "side": "control"
+  }
+ ]
+}

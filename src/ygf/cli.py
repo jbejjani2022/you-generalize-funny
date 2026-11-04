@@ -51,6 +51,45 @@ def cmd_smoke(a):
         log(f"--- [{r['case']}] {r['text'][:400]!r}")
 
 
+def cmd_check_sampler(a):
+    """Sampler correctness: greedy tokens from our KV loop (padded, mixed-length batch) vs HF generate one
+    prompt at a time; and the teacher-forced mean log-prob of T=1 samples vs greedy continuations."""
+    import torch
+    from .gpu.load import load, stop_ids
+    from .gpu.sample import _generate
+    model, tok, spec = load(a.model)
+    prompts = [render([{'role': 'user', 'content': q}], spec.fmt) for q in SMOKE_QUESTIONS]
+    prompts.append(render([{'role': 'user', 'content': 'Hi.'}], spec.fmt))
+    ids = [tok.encode(p, add_special_tokens=False) for p in prompts]
+    head_t = model.lm_head_gain(model.lm_head).float().T.contiguous()
+    ours, _ = _generate(model, head_t, ids, 40, 0, [], tok.eos_token_id, None)
+    report = {'model': a.model, 'greedy': []}
+    with torch.inference_mode():
+        for x, o in zip(ids, ours):
+            ref = model.generate(input_ids=torch.tensor([x], device='cuda'), max_new_tokens=40, do_sample=False,
+                                 use_cache=True, pad_token_id=tok.eos_token_id, eos_token_id=None)[0, len(x):].tolist()
+            agree = next((i for i, (u, v) in enumerate(zip(o, ref)) if u != v), min(len(o), len(ref)))
+            report['greedy'].append({'prompt_tokens': len(x), 'first_divergence': agree, 'of': len(ref),
+                                     'ours': tok.decode(o[:agree + 3]), 'hf': tok.decode(ref[:agree + 3])})
+        gen = torch.Generator(device='cuda').manual_seed(0)
+        sampled, _ = _generate(model, head_t, ids * 4, 60, 1.0, stop_ids(tok, spec.fmt), tok.eos_token_id, gen)
+        def mean_lp(x, cont):
+            cont = [t for t in cont if t != tok.eos_token_id] or [tok.eos_token_id]
+            full = torch.tensor([x + cont], device='cuda')
+            h = model._forward_hidden(full, None, None, None, None, False)[0][0, len(x) - 1:-1]
+            lp = torch.log_softmax(h.float() @ head_t, -1)
+            return lp[torch.arange(len(cont)), torch.tensor(cont, device='cuda')].mean().item()
+        report['mean_logprob_T1_samples'] = sum(mean_lp(x, s) for x, s in zip(ids * 4, sampled)) / len(sampled)
+        report['mean_logprob_greedy'] = sum(mean_lp(x, o) for x, o in zip(ids, ours)) / len(ours)
+        probs = torch.softmax(model._forward_hidden(torch.tensor([ids[0]], device='cuda'), None, None, None, None,
+                                                    False)[0][0, -1].float() @ head_t, -1)
+        top = probs.sort(descending=True).values
+        report['first_token_mass_top10_top100'] = [top[:10].sum().item(), top[:100].sum().item()]
+    log(json.dumps(report, indent=1))
+    (RESULTS / 'smoke').mkdir(parents=True, exist_ok=True)
+    (RESULTS / 'smoke' / f'check_sampler_{a.model}.json').write_text(json.dumps(report, indent=1))
+
+
 def cmd_sample(a):
     """Every (condition, k, seed) run of a spec on one model. Resumable: finished run files are skipped."""
     from .gpu.load import describe, load, stop_ids
@@ -101,11 +140,12 @@ def cmd_score(a):
     for items_path in a.items:
         items = data.jsonl(items_path)
         items = [i for i in items if mspec.fmt in i.get('formats', [mspec.fmt])]
-        prompts = [render(i['messages'], mspec.fmt, i.get('prefill', '')) for i in items]
+        prompts = [i['raw'] if 'raw' in i else render(i['messages'], mspec.fmt, i.get('prefill', '')) for i in items]
         began = time.time()
         scores = candidate_logprobs(model, tok, prompts, [i['candidates'] for i in items])
         out = RESULTS / a.experiment / a.model / f'{Path(items_path).stem}.scores.jsonl'
-        data.write_jsonl(out, [{**{k: v for k, v in i.items() if k != 'messages'}, **s, 'prompt_sha': data.text_hash(p)}
+        data.write_jsonl(out, [{**{k: v for k, v in i.items() if k not in ('messages', 'raw')}, **s,
+                                'prompt_sha': data.text_hash(p)}
                                for i, s, p in zip(items, scores, prompts)])
         log(f'{items_path}: {len(items)} items in {time.time() - began:.0f}s -> {out}')
 
@@ -119,6 +159,8 @@ def main(argv=None):
     d = sub.add_parser('smoke')
     d.add_argument('--model', required=True); d.add_argument('--n', type=int, default=5)
     d.add_argument('--max-new-tokens', type=int, default=200); d.add_argument('--seed', type=int, default=0)
+    d = sub.add_parser('check-sampler')
+    d.add_argument('--model', required=True)
     d = sub.add_parser('sample')
     d.add_argument('--spec', required=True); d.add_argument('--model', required=True)
     d.add_argument('--only', nargs='*'); d.add_argument('--n', type=int)
@@ -139,7 +181,7 @@ def main(argv=None):
                     for q in SMOKE_QUESTIONS]
         log(json.dumps(verify_it(a.talkie_src, prompts, RESULTS / 'smoke' / 'verify_it.json'), indent=1))
     else:
-        {'smoke': cmd_smoke, 'sample': cmd_sample, 'score': cmd_score}[a.command](a)
+        {'smoke': cmd_smoke, 'sample': cmd_sample, 'score': cmd_score, 'check-sampler': cmd_check_sampler}[a.command](a)
 
 
 if __name__ == '__main__':
